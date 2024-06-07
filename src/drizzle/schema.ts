@@ -1,5 +1,6 @@
 import { pgTable, timestamp, integer, text, serial, decimal, boolean, varchar } from 'drizzle-orm/pg-core';
 import { relations } from "drizzle-orm";
+import { type } from 'os';
 
 // users table no. 1
 export const usersTable = pgTable("users", {
@@ -291,4 +292,5 @@ export const orderMenuItemRelations = relations(orderMenuItemTable, ({ one }) =>
 
 export type  UserInsert = typeof usersTable.$inferInsert;
 export type  UserSelect = typeof usersTable.$inferSelect;
-// export type UserInsert= typeof usersTable.$inferInsert;
+export type stateinsert = typeof stateTable.$inferInsert
+export type stateselect = typeof stateTable.$inferSelect

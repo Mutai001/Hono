@@ -5,6 +5,17 @@ GET http://localhost:3000/listuser
 DELETE http://localhost:3000/user/3
 
 
+###
+UPDATE http://localhost:3000/user/
+
+
+
+###
+POST http://localhost:3000/user/
+
+
+
+
 
 
 
