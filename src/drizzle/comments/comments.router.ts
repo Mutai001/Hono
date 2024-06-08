@@ -1,5 +1,5 @@
 import { Hono } from "hono";
-import { createUsersData, deleteUsersData, getAllUsersData, getOneUsersData, updateUsersData } from "./user.contreller";
+import { createUsersData, deleteUsersData, getAllUsersData, getOneUsersData, updateUsersData } from "./comments.contreller";
 
 export const UserRouter = new Hono();
 UserRouter.get("/users", getAllUsersData);

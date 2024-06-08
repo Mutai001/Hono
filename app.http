@@ -1,18 +1,44 @@
 ###
-GET http://localhost:3000/listuser
+GET http://localhost:3000/users/users
 
 ###
-DELETE http://localhost:3000/user/3
-
-
-###
-UPDATE http://localhost:3000/user/
-
+GET http://localhost:3000/users/users/2
 
 
 ###
-POST http://localhost:3000/user/
+DELETE http://localhost:3000/users/users/2
 
+###
+POST http://localhost:3000/users/users
+Content-Type: application/json
+
+{
+  "name": "Cyrus",
+  "contact_phone": "0722227154",
+  "phone_verified": true,
+  "email": "cyruskimtai@gmail.com",
+  "email_verified": true,
+  "confirmation_code": "10005",
+  "password": "@cyrusKim",
+  "created_at": "2024-02-01",
+  "updated_at": "2024-04-01"
+}
+###
+PUT http://localhost:3000/users/users/1
+  {
+  "name": "Cyrus",
+  "contact_phone": "0722227154",
+  "phone_verified": true,
+  "email": "cyruskimtai@gmail.com",
+  "email_verified": true,
+  "confirmation_code": "10005",
+  "password": "@cyrusKim",
+  "created_at": "2024-02-01",
+  "updated_at": "2024-04-01"
+}
+
+###
+GET http://localhost:3000/address/address
 
 
 

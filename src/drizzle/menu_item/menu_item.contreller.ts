@@ -1,5 +1,5 @@
 import { Context } from "hono";
-import { CreateUser, DeleteUser, fetchOneUsers, getAllUsers, UpdateUser } from "./user.service";
+import { CreateUser, DeleteUser, fetchOneUsers, getAllUsers, UpdateUser } from "./menu_item.service";
 
 //fetch all users
 export const getAllUsersData = async (c: Context) => {
