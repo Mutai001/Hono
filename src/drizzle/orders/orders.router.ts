@@ -1,9 +1,9 @@
 import { Hono } from "hono";
-import { createUsersData, deleteUsersData, getAllUsersData, getOneUsersData, updateUsersData } from "./user.contreller";
+import { createOrdersData, deleteOrdersData, getAllOrdersData, getOneOrdersData, updateOrdersData } from "./orders.contreller";
 
-export const UserRouter = new Hono();
-UserRouter.get("/users", getAllUsersData);
-UserRouter.get("/users/:id", getOneUsersData);
-UserRouter.post("/users", createUsersData);
-UserRouter.delete("/users/:id", deleteUsersData);
-UserRouter.put("/users/:id", updateUsersData);
+export const ordersRouter = new Hono();
+ordersRouter.get("/orders", getAllOrdersData);
+ordersRouter.get("/orders/:id", getOneOrdersData);
+ordersRouter.post("/orders", createOrdersData);
+ordersRouter.delete("/orders/:id", deleteOrdersData);
+ordersRouter.put("/orders/:id", updateOrdersData);

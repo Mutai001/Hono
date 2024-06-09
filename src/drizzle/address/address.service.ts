@@ -4,7 +4,7 @@ import db from "../db";
 import { eq } from "drizzle-orm";
 
 //fetching all address
-export const fetchAddress = async (id: number) => {
+export const fetchAllAddress = async (id: number) => {
     return await db.query.addressTable.findMany()
 } 
 

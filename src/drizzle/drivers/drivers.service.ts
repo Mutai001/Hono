@@ -1,4 +1,4 @@
-//Fetch all user
+//Fetch all driver
 
 import { eq } from "drizzle-orm"
 import db from "../db"

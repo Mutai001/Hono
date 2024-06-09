@@ -1,13 +1,13 @@
 import { Context } from "hono";
-import { createAddress, deleteAddress, fetchOneAddress, fetchAddress, updateAddress } from "./address.service";
+import { createAddress, deleteAddress, fetchOneAddress, fetchAllAddress, updateAddress } from './address.service';
 
 //fetch all address
-export const fetchAddressData = async (c: Context) => {
-    const address= await fetchAddress()
-    if(address === null){
+export const getAllAddressData = async (c: Context) => {
+    const adderss= await fetchAllAddress()
+    if(adderss === null){
         return c.json({message: "No address found"})
     }
-    return c.json(address,200)
+    return c.json(adderss,200)
 }
 
 // fetch one address

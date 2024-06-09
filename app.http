@@ -1,3 +1,5 @@
+//Users
+
 ###
 GET http://localhost:3000/users/users
 
@@ -37,13 +39,245 @@ PUT http://localhost:3000/users/users/1
   "updated_at": "2024-04-01"
 }
 
+
+
+//Address 
+
 ###
 GET http://localhost:3000/address/address
 
+###
+GET http://localhost:3000/address/address/1
+
+
+###
+DELETE http://localhost:3000/address/address/1
+
+###
+POST http://localhost:3000/address/address
+
+###
+PUT http://localhost:3000/address/address/1
 
 
 
+//Category 
+
+###
+GET http://localhost:3000/category/category
+
+###
+GET http://localhost:3000/category/category/1
+
+
+###
+DELETE http://localhost:3000/category/category/1
+
+###
+POST http://localhost:3000/category/category
+
+###
+PUT http://localhost:3000/category/category/1
+
+//City 
+
+###
+GET http://localhost:3000/city/city
+
+###
+GET http://localhost:3000/city/city/1
+
+
+###
+DELETE http://localhost:3000/city/city/1
+
+###
+POST http://localhost:3000/city/city
+
+###
+PUT http://localhost:3000/city/city/1
+
+//Comments 
+
+###
+GET http://localhost:3000/comments/comments
+
+###
+GET http://localhost:3000/comments/comments/1
+
+
+###
+DELETE http://localhost:3000/comments/comments/1
+
+###
+POST http://localhost:3000/comments/comments
+
+###
+PUT http://localhost:3000/comments/comments/1
+
+//drivers 
+
+###
+GET http://localhost:3000/drivers/drivers
+
+###
+GET http://localhost:3000/drivers/drivers/1
+
+
+###
+DELETE http://localhost:3000/drivers/drivers/1
+
+###
+POST http://localhost:3000/drivers/drivers
+
+###
+PUT http://localhost:3000/drivers/drivers/1
+
+
+//menu_item 
+
+###
+GET http://localhost:3000/menu_item/menu_item
+
+###
+GET http://localhost:3000/menu_item/menu_item/1
+
+
+###
+DELETE http://localhost:3000/menu_item/menu_item/1
+
+###
+POST http://localhost:3000/menu_item/menu_item
+
+###
+PUT http://localhost:3000/menu_item/menu_item/1
 
 
 
+//order_menu_item 
+
+###
+GET http://localhost:3000/order_menu_item/order_menu_item
+
+###
+GET http://localhost:3000/order_menu_item/order_menu_item/1
+
+
+###
+DELETE http://localhost:3000/order_menu_item/order_menu_item/1
+
+###
+POST http://localhost:3000/order_menu_item/order_menu_item
+
+###
+PUT http://localhost:3000/order_menu_item/order_menu_item/1
+
+//orders 
+
+###
+GET http://localhost:3000/orders/orders
+
+###
+GET http://localhost:3000/orders/orders/1
+
+
+###
+DELETE http://localhost:3000/orders/orders/1
+
+###
+POST http://localhost:3000/orders/orders
+
+###
+PUT http://localhost:3000/orders/orders/
+
+//orders_status 
+
+###
+GET http://localhost:3000/orders_status/orders_status
+
+###
+GET http://localhost:3000/orders_status/orders_status/1
+
+
+###
+DELETE http://localhost:3000/orders_status/orders_status/1
+
+###
+POST http://localhost:3000/orders_status/orders_status
+
+###
+PUT http://localhost:3000/orders_status/orders_status/orders_status/1
+
+
+//restautant 
+
+###
+GET http://localhost:3000/restautant/restautant
+
+###
+GET http://localhost:3000/restautant/restautant/1
+
+
+###
+DELETE http://localhost:3000/restautant/restautant/1
+
+###
+POST http://localhost:3000/restautant/restautant
+
+###
+PUT http://localhost:3000/restautant/restautant/restautant/1
+
+//restaurant_owner 
+
+###
+GET http://localhost:3000/restaurant_owner/restaurant_owner
+
+###
+GET http://localhost:3000/restaurant_owner/restaurant_owner/1
+
+
+###
+DELETE http://localhost:3000/restaurant_owner/restaurant_owner/1
+
+###
+POST http://localhost:3000/restaurant_owner/restaurant_owner
+
+###
+PUT http://localhost:3000/restaurant_owner/restaurant_owner/1
+
+//state 
+
+###
+GET http://localhost:3000/state/states
+
+###
+GET http://localhost:3000/state/states/1
+
+
+###
+DELETE http://localhost:3000/state/states/1
+
+###
+POST http://localhost:3000/state/state
+
+###
+PUT http://localhost:3000/state/state/1
+
+//status_catalog 
+
+###
+GET http://localhost:3000/status_catalog/status_catalog
+
+###
+GET http://localhost:3000/status_catalog/status_catalog/1
+
+
+###
+DELETE http://localhost:3000/status_catalog/status_catalog/1
+
+###
+POST http://localhost:3000/status_catalog/status_catalog
+
+###
+PUT http://localhost:3000/status_catalog/status_catalog/1
 

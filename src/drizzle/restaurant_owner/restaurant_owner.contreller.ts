@@ -1,46 +1,46 @@
 import { Context } from "hono";
-import { CreateUser, DeleteUser, fetchOneUsers, getAllUsers, UpdateUser } from "./user.service";
+import { CreateRestautantOwner, DeleteRestautantOwner, fetchOneRestautantOwners, getAllRestautantOwners, UpdateRestautantOwner } from "./restaurant_owner.service";
 
-//fetch all users
-export const getAllUsersData = async (c: Context) => {
-    const users= await getAllUsers()
-    if(users === null){
-        return c.json({message: "No users found"})
+//fetch all RestautantOwners
+export const getAllRestautantOwnersData = async (c: Context) => {
+    const restaurant_owners= await getAllRestautantOwners()
+    if(restaurant_owners === null){
+        return c.json({message: "No restaurant_owners found"})
     }
-    return c.json(users,200)
+    return c.json(restaurant_owners,200)
 }
 
-// fetch one user
-export const getOneUsersData = async (c: Context) => {
+// fetch one restaurant_owners
+export const getOneRestautantOwnersData = async (c: Context) => {
     const id = c.req.param("id")
-    const user = await fetchOneUsers(parseInt(id))
-    if(user === undefined){
-        return c.json({message: "No user found"},404)
+    const restaurant_owners = await fetchOneRestautantOwners(parseInt(id))
+    if(restaurant_owners === undefined){
+        return c.json({message: "No restaurant_owners found"},404)
     }
-    return c.json(user,200)
+    return c.json(restaurant_owners,200)
 }
 
-//create user
-export const createUsersData = async (c: Context, next: Function) => {
+//create restaurant_owners
+export const createRestautantOwnersData = async (c: Context, next: Function) => {
     
     try{
-       const user = await c.req.json()
-    const response = await CreateUser(user)
+       const restaurant_owners = await c.req.json()
+    const response = await CreateRestautantOwner(restaurant_owners)
     return c.json({message: response},201)
     } catch(err){
         return c.json({message: err},500)
     }
 }
 
-//update user
-export const updateUsersData = async (c: Context) => {
+//update restaurant_owners
+export const updateRestautantOwnersData = async (c: Context) => {
    
 }
 
-//delete user
-export const deleteUsersData = async (c: Context) => {
+//delete restaurant_owners
+export const deleteRestautantOwnersData = async (c: Context) => {
     const id = c.req.param("id")   
-    const response = await DeleteUser(parseInt(id))
+    const response = await DeleteRestautantOwner(parseInt(id))
     return c.json({message: response},200)
 
 }

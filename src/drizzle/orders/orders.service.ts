@@ -1,34 +1,34 @@
-//Fetch all user
+//Fetch all Orders
 
 import { eq } from "drizzle-orm"
 import db from "../db"
-import { UserSelect, usersTable, UserInsert } from '../schema';
+import { ordersselect, ordersTable, ordersinsert } from '../schema';
 
-export const getAllUsers = async (): Promise<UserSelect[] | null> => {
-    return await db.query.usersTable.findMany()
+export const getAllOrders = async (): Promise<ordersselect[] | null> => {
+    return await db.query.ordersTable.findMany()
 
 }
 
-// fetch one user
-export const fetchOneUsers = async (id: number): Promise<UserSelect | undefined> => {
-return await db.query.usersTable.findFirst({
-    where: eq(usersTable.id, id)
+// fetch one orders
+export const fetchOneOrders = async (id: number): Promise<ordersselect | undefined> => {
+return await db.query.ordersTable.findFirst({
+    where: eq(ordersTable.id, id)
 })
 }
 
-// create user
-export const CreateUser = async (user: UserInsert) => {
-    await db.insert(usersTable).values(user)
-    return "User created successfully"
+// create Orders
+export const CreateOrder = async (Orders: ordersinsert) => {
+    await db.insert(ordersTable).values(Orders)
+    return "Order created successfully"
 }
 
-// update user
-export const UpdateUser = async () => {
+// update Order
+export const UpdateOrders = async () => {
  
 }
 
-// delete user
-export const DeleteUser = async (id: number) => {
-    await db.delete(usersTable).where(eq(usersTable.id, id))
-    return "User deleted successfully"
+// delete Order
+export const DeleteOrder = async (id: number) => {
+    await db.delete(ordersTable).where(eq(ordersTable.id, id))
+    return "Orders deleted successfully"
 }

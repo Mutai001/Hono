@@ -21,10 +21,10 @@ export const CreateCategory  = async (category: categoryinsert)=> {
 
 
 //updating a category
-// export const UpdateCategory = async(id:number,category:categoryinsert) => {
-//     await db.update(categoryinsert).set(category).where(eq(categoryTable.id,id));
-//     return "Category updated successfully"
-// }
+export const UpdateCategory = async(id:number,category:categoryinsert) => {
+    // await db.update(categoryinsert).set(category).where(eq(categoryTable.id,id));
+    // return "Category updated successfully"
+}
 
 
 //deleting a category

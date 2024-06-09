@@ -1,30 +1,34 @@
-// import db from "../db"
-// import { stateselect, stateInsert, stateTable } from "../schema"
+//Fetch all states
 
+import { eq } from "drizzle-orm"
+import db from "../db"
+import {  stateTable, stateinsert, stateselect } from '../schema';
 
-// export const stateService = async (): Promise<stateselect[]> => {
-//     try {
-//         const state = await db.query.stateTable.findMany();
-//         console.log('States fetched:', state);
-//         return state;
-//     } catch (error) {
-//         console.error('Error fetching states:', error);
-//         throw error;
-//     }
-// }
+export const getAllStates = async (): Promise<stateselect[] | null> => {
+    return await db.query.stateTable.findMany()
 
-// export const addStateService = async (state: stateInsert) => {
-//     await db.insert(stateTable).values(state)
-//     return "State added successfully";
-// }
+}
 
-// export const updateStateService = async (state: stateInsert) => {
-//     // await db.update(stateTable).set(state).where( state.id);
-//     return "State updated successfully";
-// }
+// fetch one states
+export const fetchOneState = async (id: number): Promise<stateselect | undefined> => {
+return await db.query.stateTable.findFirst({
+    where: eq(stateTable.id, id)
+})
+}
 
-// // export const deleteStateService = async (id: number) => {
-// //     await db.delete(stateTable).where(stateTable.id.equals(id));
-// //     await db.query.stateTable.delete({where: {id: id}})
-// //     return "State deleted successfully";
-// //}
+// create states
+export const CreateState = async (states: stateinsert) => {
+    await db.insert(stateTable).values(states)
+    return "state created successfully"
+}
+
+// update states
+export const UpdateState = async () => {
+ 
+}
+
+// delete states
+export const DeleteState = async (id: number) => {
+    await db.delete(stateTable).where(eq(stateTable.id, id))
+    return "states deleted successfully"
+}

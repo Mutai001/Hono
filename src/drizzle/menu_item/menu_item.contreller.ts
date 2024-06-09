@@ -1,46 +1,46 @@
 import { Context } from "hono";
-import { CreateUser, DeleteUser, fetchOneUsers, getAllUsers, UpdateUser } from "./menu_item.service";
+import { CreateMenuItem, DeleteMenuItem, fetchOneMenuItem, getAllMenuItem, UpdateMenuItem} from "./menu_item.service";
 
-//fetch all users
-export const getAllUsersData = async (c: Context) => {
-    const users= await getAllUsers()
-    if(users === null){
-        return c.json({message: "No users found"})
+//fetch all a
+export const getAllMenuItemData = async (c: Context) => {
+    const menuItem = await getAllMenuItem()
+    if(menuItem === null){
+        return c.json({message: "No menuItem found"})
     }
-    return c.json(users,200)
+    return c.json(menuItem,200)
 }
 
-// fetch one user
-export const getOneUsersData = async (c: Context) => {
+// fetch one menuItem
+export const getOneMenuItemData = async (c: Context) => {
     const id = c.req.param("id")
-    const user = await fetchOneUsers(parseInt(id))
-    if(user === undefined){
-        return c.json({message: "No user found"},404)
+    const menuItem = await fetchOneMenuItem(parseInt(id))
+    if(menuItem === undefined){
+        return c.json({message: "No menuItem found"},404)
     }
-    return c.json(user,200)
+    return c.json(menuItem,200)
 }
 
-//create user
-export const createUsersData = async (c: Context, next: Function) => {
+//create menuItem
+export const createMenuItemData = async (c: Context, next: Function) => {
     
     try{
-       const user = await c.req.json()
-    const response = await CreateUser(user)
+       const menuItem = await c.req.json()
+    const response = await CreateMenuItem(menuItem)
     return c.json({message: response},201)
     } catch(err){
         return c.json({message: err},500)
     }
 }
 
-//update user
-export const updateUsersData = async (c: Context) => {
+//update menuItem
+export const updateMenuItemData = async (c: Context) => {
    
 }
 
-//delete user
-export const deleteUsersData = async (c: Context) => {
+//delete menuItem
+export const deleteMenuItemData = async (c: Context) => {
     const id = c.req.param("id")   
-    const response = await DeleteUser(parseInt(id))
+    const response = await DeleteMenuItem(parseInt(id))
     return c.json({message: response},200)
 
 }

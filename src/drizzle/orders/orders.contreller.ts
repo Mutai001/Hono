@@ -1,46 +1,46 @@
 import { Context } from "hono";
-import { CreateUser, DeleteUser, fetchOneUsers, getAllUsers, UpdateUser } from "./user.service";
+import { CreateOrder, DeleteOrder, fetchOneOrders, getAllOrders, UpdateOrders } from "./orders.service";
 
-//fetch all users
-export const getAllUsersData = async (c: Context) => {
-    const users= await getAllUsers()
-    if(users === null){
-        return c.json({message: "No users found"})
+//fetch all orders
+export const getAllOrdersData = async (c: Context) => {
+    const orders= await getAllOrders()
+    if(orders === null){
+        return c.json({message: "No orders found"})
     }
-    return c.json(users,200)
+    return c.json(orders,200)
 }
 
-// fetch one user
-export const getOneUsersData = async (c: Context) => {
+// fetch one orders
+export const getOneOrdersData = async (c: Context) => {
     const id = c.req.param("id")
-    const user = await fetchOneUsers(parseInt(id))
-    if(user === undefined){
-        return c.json({message: "No user found"},404)
+    const orders = await fetchOneOrders(parseInt(id))
+    if(orders === undefined){
+        return c.json({message: "No orders found"},404)
     }
-    return c.json(user,200)
+    return c.json(orders,200)
 }
 
-//create user
-export const createUsersData = async (c: Context, next: Function) => {
+//create orders
+export const createOrdersData = async (c: Context, next: Function) => {
     
     try{
-       const user = await c.req.json()
-    const response = await CreateUser(user)
+       const orders = await c.req.json()
+    const response = await CreateOrder(orders)
     return c.json({message: response},201)
     } catch(err){
         return c.json({message: err},500)
     }
 }
 
-//update user
-export const updateUsersData = async (c: Context) => {
+//update orders
+export const updateOrdersData = async (c: Context) => {
    
 }
 
-//delete user
-export const deleteUsersData = async (c: Context) => {
+//delete orders
+export const deleteOrdersData = async (c: Context) => {
     const id = c.req.param("id")   
-    const response = await DeleteUser(parseInt(id))
+    const response = await DeleteOrder(parseInt(id))
     return c.json({message: response},200)
 
 }
