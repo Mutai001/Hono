@@ -4,7 +4,7 @@
 GET http://localhost:3000/users/users
 
 ###
-GET http://localhost:3000/users/users/2
+GET http://localhost:3000/users/users/1
 
 
 ###
@@ -47,15 +47,25 @@ PUT http://localhost:3000/users/users/1
 GET http://localhost:3000/address/address
 
 ###
-GET http://localhost:3000/address/address/1
+GET http://localhost:3000/address/address/2
 
 
 ###
 DELETE http://localhost:3000/address/address/1
 
 ###
-POST http://localhost:3000/address/address
-
+PUT http://localhost:3000/address/address
+Content-Type: application/application/json
+{
+  "street_address_1": "300",
+  "street_address_2": "20901",
+  "zip_code": "20001",
+  "delivery_instructions": "After payment",
+  "user_id": 1,
+  "city_id": 3,
+  "created_at": "2024-03-05T00:00:00.000Z",
+  "updated_at": "2024-03-08T00:00:00.000Z"
+}
 ###
 PUT http://localhost:3000/address/address/1
 
@@ -67,7 +77,7 @@ PUT http://localhost:3000/address/address/1
 GET http://localhost:3000/category/category
 
 ###
-GET http://localhost:3000/category/category/1
+GET http://localhost:3000/category/category/2
 
 
 ###
@@ -75,9 +85,17 @@ DELETE http://localhost:3000/category/category/1
 
 ###
 POST http://localhost:3000/category/category
-
+content-type: application/json
+{
+  "name": "drinks", 
+}
 ###
 PUT http://localhost:3000/category/category/1
+content-type: application/json
+{
+  "name": "drinks",  
+}
+
 
 //City 
 
@@ -85,7 +103,7 @@ PUT http://localhost:3000/category/category/1
 GET http://localhost:3000/city/city
 
 ###
-GET http://localhost:3000/city/city/1
+GET http://localhost:3000/city/city/3
 
 
 ###
@@ -93,9 +111,20 @@ DELETE http://localhost:3000/city/city/1
 
 ###
 POST http://localhost:3000/city/city
-
+content-Content-Type: application/json
+{
+  "name": "Nairobi",  
+  "state_id": 8
+}
 ###
 PUT http://localhost:3000/city/city/1
+content-Content-Type: application/json
+{
+  "name": "Nairobi",  
+  "state_id": 8
+}
+
+
 
 //Comments 
 

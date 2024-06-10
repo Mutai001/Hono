@@ -1,10 +1,11 @@
 import { promise } from "zod";
 import db from "../db";
 import { eq } from "drizzle-orm";
-import { categoryinsert, categoryTable } from '../schema';
+import { categoryinsert, categoryselect, categoryTable } from '../schema';
+import { updateCategoryData } from './category.contreller';
 
 //fetching all categories
-export const getAllCategory = async (id: number) => {
+export const getAllCategory = async (): Promise<categoryselect[] | null> => {
     return await db.query.categoryTable.findMany()
 } 
 
@@ -21,9 +22,9 @@ export const CreateCategory  = async (category: categoryinsert)=> {
 
 
 //updating a category
-export const UpdateCategory = async(id:number,category:categoryinsert) => {
-    // await db.update(categoryinsert).set(category).where(eq(categoryTable.id,id));
-    // return "Category updated successfully"
+export const updateCategory = async(id:number,category:categoryinsert) => {
+    await db.update(categoryTable).set(category).where(eq(categoryTable.id,id));
+    return "category updated successfully"
 }
 
 

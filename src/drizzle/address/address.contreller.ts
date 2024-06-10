@@ -22,19 +22,32 @@ export const fetchOneAddressData = async (c: Context) => {
 
 //create address
 export const createAddressData = async (c: Context, next: Function) => {
-    
-    try{
-       const address = await c.req.json()
-    const response = await createAddress(address)
-    return c.json({message: response},201)
-    } catch(err){
-        return c.json({message: err},500)
+     try {
+        const id = parseInt(c.req.param('id'), 10);
+        if (isNaN(id)) return c.text('Invalid id', 400);
+        const address = await c.req.json();
+        const updatedAddress = await updateAddress(id, address);
+
+        if (!updatedAddress) return c.text('Address not updated', 400);
+        return c.json({ msg: updatedAddress }, 200);
+    } catch (error: any) {
+        return c.json({ error: error?.message }, 400);
     }
 }
 
 //update address
 export const updateAddressData = async (c: Context) => {
-   
+    try {
+        const id = parseInt(c.req.param('id'), 10);
+        if (isNaN(id)) return c.text('Invalid id', 400);
+        const address = await c.req.json();
+        const updatedAddress = await updateAddress(id, address);
+
+        if (!updatedAddress) return c.text('Address not updated', 400);
+        return c.json({ msg: updatedAddress }, 200);
+    } catch (error: any) {
+        return c.json({ error: error?.message }, 400);
+    }
 }
 
 //delete address

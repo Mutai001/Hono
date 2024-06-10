@@ -1,10 +1,10 @@
 import { promise } from "zod";
-import { addressinsert, addressTable, cityinsert, cityselect, cityTable} from '../schema';
+import { addressinsert, addressselect, addressTable, cityinsert, cityselect, cityTable} from '../schema';
 import db from "../db";
 import { eq } from "drizzle-orm";
 
 //fetching all address
-export const fetchAllAddress = async (id: number) => {
+export const fetchAllAddress = async (): Promise<addressselect[]| null> => {
     return await db.query.addressTable.findMany()
 } 
 
@@ -25,7 +25,7 @@ export const updateAddress = async(id:number,address:addressinsert) => {
     await db.update(addressTable).set(address).where(eq(addressTable.id,id));
     return "Address updated successfully"
 }
-
+   
 
 //deleting a address
 export const deleteAddress = async (id: number) =>{
