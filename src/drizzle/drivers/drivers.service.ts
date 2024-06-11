@@ -23,8 +23,10 @@ export const CreateDriver = async (driver: driversinsert) => {
 }
 
 // update driver
-export const UpdateDriver = async () => {
- 
+export const UpdateDriver = async (id:number,comments:driversinsert) => {
+    await db.update(driversTable).set(comments).where(eq(driversTable.id,id));
+    return "Address updated successfully"
+
 }
 
 // delete driver

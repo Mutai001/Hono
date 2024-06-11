@@ -1,5 +1,5 @@
 import { Context } from "hono";
-import { CreateCategory, DeleteCategory, fetchOneCategory, getAllCategory } from "./category.service";
+import { CreateCategory, DeleteCategory, fetchOneCategory, getAllCategory, updateCategory } from "./category.service";
 
 //fetch all category
 export const getAllCategoryData = async (c: Context) => {
@@ -34,16 +34,17 @@ export const createCategoryData = async (c: Context, next: Function) => {
 
 //update category
 export const updateCategoryData = async (c: Context) => {
-    // try {
-    //     const id = parseInt(c.req.param('id'), 10);
-    //     if (isNaN(id)) return c.text('Invalid id', 400);
-    //     const category = await c.req.json();
-    //     const UpdateCategory  = await UpdateCategory(id, category);
-    //     if (!UpdateCategory) return c.text('Address not updated', 400);
-    //     return c.json({ msg: UpdateCategory }, 200);
-    // } catch (error: any) {
-    //     return c.json({ error: error?.message }, 400);
-    // }
+    try {
+        const id = parseInt(c.req.param('id'), 10);
+        if (isNaN(id)) return c.text('Invalid id', 400);
+        const city = await c.req.json();
+        const City = await updateCategory(id, city);
+
+        if (!updateCategory) return c.text('Category not updated', 400);
+        return c.json({ msg: updateCategory }, 200);
+    } catch (error: any) {
+        return c.json({ error: error?.message }, 400);
+    }
 }
 
 //delete category

@@ -22,9 +22,11 @@ export const CreateOrderMenuItem = async (OrderMenuItem: orderMenuIteminsert) =>
 }
 
 // update OrderMenuItem
-export const UpdateOrderMenuItem = async () => {
- 
-}
+export const updateOrderMenuItem = async (id:number, ordermenuItems:orderMenuIteminsert) => {
+    await db.update(orderMenuItemTable).set(ordermenuItems).where(eq(orderMenuItemTable.id,id));
+    return "MenuItem updated successfully"
+
+ }
 
 // delete OrderMenuItem
 export const DeleteOrderMenuItem = async (id: number) => {

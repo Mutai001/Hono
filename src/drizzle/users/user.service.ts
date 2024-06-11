@@ -21,10 +21,23 @@ export const CreateUser = async (user: UserInsert) => {
     await db.insert(usersTable).values(user)
     return "User created successfully"
 }
-
+// log in user
+export const loginUser = async (user: any) => {
+//    const { email, password } = user; 
+console.log(user)
+    return await db.query.usersTable.findFirst({
+        columns:{
+            name: true,
+            contact_phone: true,
+            email: true,
+            password: true
+        },where: eq(usersTable.email, user.email)
+    })
+}
 // update user
-export const UpdateUser = async () => {
- 
+export const UpdateUser = async (id:number, user:UserInsert) => {
+  await db.update(usersTable).set(user).where(eq(usersTable.id, id))
+    return "User updated successfully";
 }
 
 // delete user

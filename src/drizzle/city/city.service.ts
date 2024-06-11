@@ -23,8 +23,10 @@ export const CreateCity = async (city: cityinsert) => {
 }
 
 // update city
-export const UpdateCity = async () => {
- 
+export const UpdateCity = async (id:number,city:cityinsert) => {
+    await db.update(cityTable).set(city).where(eq(cityTable.id,id));
+    return "Address updated successfully"
+
 }
 
 // delete city

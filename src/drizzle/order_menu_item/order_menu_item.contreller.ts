@@ -1,5 +1,5 @@
 import { Context } from "hono";
-import { CreateOrderMenuItem, DeleteOrderMenuItem, fetchOneOrderMenuItem, getAllOrderMenuItem, UpdateOrderMenuItem } from "./order_menu_item.service";
+import { CreateOrderMenuItem, DeleteOrderMenuItem, fetchOneOrderMenuItem, getAllOrderMenuItem, updateOrderMenuItem } from "./order_menu_item.service";
 
 //fetch all OrderMenuItem
 export const getAllOrderMenuItemData = async (c: Context) => {
@@ -33,8 +33,19 @@ export const createOrderMenuItemData = async (c: Context, next: Function) => {
 }
 
 //update OrderMenuItem
+
 export const updateOrderMenuItemData = async (c: Context) => {
-   
+    try {
+        const id = parseInt(c.req.param('id'), 10);
+        if (isNaN(id)) return c.text('Invalid id', 400);
+        const orderMenuItem = await c.req.json();
+        const OrderMenuI = await updateOrderMenuItem(id, orderMenuItem);
+
+        if (!updateOrderMenuItem) return c.text('Menu_item not updated', 400);
+        return c.json({ msg: updateOrderMenuItem }, 200);
+    } catch (error: any) {
+        return c.json({ error: error?.message }, 400);
+    }
 }
 
 //delete OrderMenuItem

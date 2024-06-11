@@ -13,6 +13,7 @@
         "@hono/prometheus": "^1.0.1",
         "@hono/zod-validator": "^0.2.2",
         "@neondatabase/serverless": "^0.9.3",
+        "bcrypt": "^5.1.1",
         "dotenv": "^16.4.5",
         "drizzle-orm": "^0.31.1",
         "hono": "^4.4.2",
@@ -22,6 +23,7 @@
     },
     "devDependencies": {
         "@faker-js/faker": "^8.4.1",
+        "@types/bcrypt": "^5.0.2",
         "@types/node": "^20.11.17",
         "@types/pg": "^8.11.6",
         "drizzle-kit": "^0.22.2",

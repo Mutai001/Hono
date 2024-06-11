@@ -26,17 +26,18 @@ Content-Type: application/json
   "updated_at": "2024-04-01"
 }
 ###
-PUT http://localhost:3000/users/users/1
+PUT http://localhost:3000/users/users
+Content-Type: application/json
   {
-  "name": "Cyrus",
-  "contact_phone": "0722227154",
+  "name": "Cyruz",
+  "contact_phone": "0722227134",
   "phone_verified": true,
-  "email": "cyruskimtai@gmail.com",
+  "email": "cyruskimtai01@gmail.com",
   "email_verified": true,
-  "confirmation_code": "10005",
-  "password": "@cyrusKim",
-  "created_at": "2024-02-01",
-  "updated_at": "2024-04-01"
+  "confirmation_code": "80005",
+  "password": "@cyrusKimu",
+  "created_at": "2024-02-08",
+  "updated_at": "2024-04-03"
 }
 
 

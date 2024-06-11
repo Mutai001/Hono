@@ -1,5 +1,5 @@
 import { Context } from "hono";
-import { CreateCity, DeleteCity, fetchOneCity, getAllCity } from "./city.service";
+import { CreateCity, DeleteCity, fetchOneCity, getAllCity,UpdateCity } from "./city.service";
 
 //fetch all city
 export const getAllCitysData = async (c: Context) => {
@@ -34,7 +34,17 @@ export const createCitysData = async (c: Context, next: Function) => {
 
 //update city
 export const updateCitysData = async (c: Context) => {
-   
+    try {
+        const id = parseInt(c.req.param('id'), 10);
+        if (isNaN(id)) return c.text('Invalid id', 400);
+        const city = await c.req.json();
+        const City = await UpdateCity(id, city);
+
+        if (!UpdateCity) return c.text('City not updated', 400);
+        return c.json({ msg: UpdateCity }, 200);
+    } catch (error: any) {
+        return c.json({ error: error?.message }, 400);
+    }
 }
 
 //delete city

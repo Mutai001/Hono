@@ -18,5 +18,4 @@ main();
 
  const db = drizzle(sql, { schema, logger: true })  //create a drizzle instance
 
-export default db;  //export the drizzle instancea
-
+export default db;  //export the drizzle instance
