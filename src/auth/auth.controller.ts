@@ -1,10 +1,27 @@
 import dotenv from 'dotenv';
 import { Context } from 'hono';
 import * as bcrypt from 'bcrypt';
-import {  loginUser } from "./auth.service";
+import {  loginUser, createAuthUserService } from "./auth.service";
 
 
 
+//register user
+
+export const registerUser = async (c: Context) => {
+    try {
+        const user = await c.req.json();
+        const pass = user.password;
+        const hashedPassword = await bcrypt.hash(pass, 10);
+        user.password = hashedPassword;
+        const createdUser = await createAuthUserService(user);
+        if (!createdUser) return c.text("User not created", 404);
+        return c.json({ msg: createdUser }, 201);
+
+    } catch (error: any) {
+        return c.json({ error: error?.message }, 400)
+    }
+
+}
 
 
 // log-in user
@@ -24,16 +41,6 @@ export const loginUserData = async (c: Context) => {
     }
 }
 
-// export const registerUser = async (c: Context) => {
-//     try{
-//         const user =await c.req.json();
-//         const pass = user.password;
-//         const hashedPass =await bcrypt.hash(pass,10);
-//         user.password = hashedPass;
-//         const createdUser = await cretaeAuthUserService(user);
-//         if (!createdUser) return c.text('User not created', 404);
-//         return c.json ({ msg: createdUser}, 201)
-//     }catch (error: any){
-//         return c.text(error?.message, 404)
-//     }
-// }
+
+
+

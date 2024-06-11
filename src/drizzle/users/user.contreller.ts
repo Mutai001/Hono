@@ -37,27 +37,12 @@ export const createUsersData = async (c: Context) => {
     }
 }
 
-// log-in user
-export const loginUserData = async (c: Context) => {
-       const details = await c.req.json()
-       console.log(details)
-    const user = await loginUser(details)
-    if(user === null){
-        return c.json({message: "No user found"},404)
-    }
-    const userMatch = await bcrypt.compare(details.password, user?.password !)
-    console.log(user?.password, details.password, userMatch)
-    if(userMatch){
-        return c.json(user,200)
-    }else {
-        return c.json({message: "Invalid details"},401)
-    }
-}
+
 
 
 
 //update user
-export const UpdateUserData = async (c: Context) => {
+export const updateUsersData = async (c: Context) => {
     try {
         const id = parseInt(c.req.param('id'), 10);
         if (isNaN(id)) return c.text('Invalid id', 400);

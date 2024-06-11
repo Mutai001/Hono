@@ -18,6 +18,7 @@ import { RestaurantOwnerRouter } from './drizzle/restaurant_owner/restaurant_own
 import { StateRouter } from './drizzle/state/state.router'
 import { status_catalogRouter } from './drizzle/status_catalog/status_catalog.router'
 // import userRoutes from './routes/user.routes';
+import { authRouter } from '../src/auth/auth.router'
 
 
 const app = new Hono()
@@ -41,6 +42,8 @@ app.route('/restaurant_owner',RestaurantOwnerRouter)
 app.route('/state',StateRouter)
 app.route('/status_catalog',status_catalogRouter)
 app.route('/category',categoryRouter)
+app.route('/auth',authRouter)   // api/auth/register   or api/auth/login
+
 
 
 
@@ -49,6 +52,8 @@ app.route('/category',categoryRouter)
 // const port = 3000 
 const port = Number(process.env.PORT)
 console.log(`Server is running on port ${process.env.PORT}`);
+
+console.log('Registered routes: ', app.routes);
 
 serve({
   fetch: app.fetch,

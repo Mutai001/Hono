@@ -2,9 +2,16 @@ import db from "../drizzle/db";
 import { UserSelect, usersTable, UserInsert } from '../drizzle/schema';
 import { eq } from "drizzle-orm";
 
+
+
+// register user
+export const createAuthUserService = async (user: UserInsert): Promise<string | null> => {
+    await db.insert(usersTable).values(user)
+    return "User created successfully";
+}
+
 // log in user
 export const loginUser = async (user: any) => {
-//    const { email, password } = user; 
 console.log(user)
     return await db.query.usersTable.findFirst({
         columns:{
@@ -17,23 +24,3 @@ console.log(user)
 }
 
 
-// export const userLoginService = async (user: AuthOneUserInsert) => {
-//     const { username, password } = user;
-//     return await db.query.AuthOneUsersTable.findFirst({
-//         columns: {
-//             username: true,
-//             role: true,
-//             password: true
-//         }, where: sql` ${AuthOneUsersTable.username} = ${username}`,
-//         with: {
-//             user: {
-//                 columns: {
-//                     fullname: true,
-//                     phone: true,
-//                     address: true,
-//                     id: true
-//                 }
-//             }
-//         }
-//     })
-// }
