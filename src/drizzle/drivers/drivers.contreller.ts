@@ -3,11 +3,19 @@ import { CreateDriver, DeleteDriver, fetchOneDriver, getAllDrivers, UpdateDriver
 
 //fetch all driver
 export const getAllDriversData = async (c: Context) => {
-    const drivers = await getAllDrivers()
-    if(drivers === null){
-        return c.json({message: "No drivers found"})
+      try {
+        //limit the number of Drivers to be returned
+
+        const limit = Number(c.req.query('limit'))
+
+        const data = await getAllDrivers(limit);
+        if (data == null || data.length == 0) {
+            return c.text("Driver not found", 404)
+        }
+        return c.json(data, 200);
+    } catch (error: any) {
+        return c.json({ error: error?.message }, 400)
     }
-    return c.json(drivers,200)
 }
 
 // fetch one driver

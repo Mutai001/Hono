@@ -4,8 +4,14 @@ import { eq } from "drizzle-orm"
 import db from "../db"
 import { driversRelations, driversTable, driversinsert, driversselect } from '../schema';
 
-export const getAllDrivers = async (): Promise<driversselect[] | null> => {
-    return await db.query.driversTable.findMany()
+
+export const getAllDrivers = async (limit?: number): Promise<driversselect[] | null> => {
+    if (limit) {
+        return await db.query.driversTable.findMany({
+            limit: limit
+        });
+    }
+    return await db.query.driversTable.findMany();
 
 }
 

@@ -1,12 +1,15 @@
-//Fetch all menuItem
-
 import { eq } from "drizzle-orm"
 import db from "../db"
 import { menuItemsselect,  menuItemsTable,  menuItemsinsert, orderMenuItemselect } from '../schema';
 
-export const getAllMenuItem = async (): Promise<menuItemsselect[] | null> => {
-    return await db.query.menuItemsTable.findMany()
-
+//Fetch all menuItem
+export const getAllMenuItem = async (limit?: number): Promise<menuItemsselect[] | null> => {
+    if (limit) {
+        return await db.query.menuItemsTable.findMany({
+            limit: limit
+        });
+    }
+    return await db.query.menuItemsTable.findMany();
 }
 
 // fetch one menuItem

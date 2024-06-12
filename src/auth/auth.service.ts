@@ -11,7 +11,7 @@ export const createAuthUserService = async (user: UserInsert): Promise<string | 
 }
 
 // log in user
-export const loginUser = async (user: any) => {
+export const loginUserService = async (user: any) => {
 console.log(user)
     return await db.query.usersTable.findFirst({
         columns:{

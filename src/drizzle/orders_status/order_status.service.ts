@@ -4,9 +4,13 @@ import { ordersStatusselect, ordersStatusTable, ordersStatusinsert } from '../sc
 
 
 //Fetch all OrderStatus
-export const getAllOrderStatus = async (): Promise<ordersStatusselect[] | null> => {
-    return await db.query.ordersStatusTable.findMany()
-
+export const getAllOrderStatus = async (limit?: number): Promise<ordersStatusselect[] | null> => {
+    if (limit) {
+        return await db.query.ordersStatusTable.findMany({
+            limit: limit
+        });
+    }
+    return await db.query.ordersStatusTable.findMany();
 }
 
 // fetch one ordersStatus
@@ -23,8 +27,9 @@ export const CreateOrdersStatus = async (ordersStatus: ordersStatusinsert) => {
 }
 
 // update ordersStatus
-export const UpdateOrdersStatus = async () => {
- 
+ export const UpdateOrdersStatus = async (id: number, OrderStatus: ordersStatusinsert) => {
+    await db.update(ordersStatusTable).set(OrderStatus).where(eq(ordersStatusTable.id, id))
+    return "OrderStatus updated successfully";
 }
 
 // delete ordersStatus

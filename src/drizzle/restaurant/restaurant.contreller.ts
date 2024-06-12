@@ -3,11 +3,19 @@ import { CreateRestaurant, DeleteRestaurant, fetchOneRestaurant,  getAllRestaura
 
 //fetch all restaurant
 export const getAllRestaurantsData = async (c: Context) => {
-    const restaurants = await getAllRestaurants()
-    if(restaurants === null){
-        return c.json({message: "No restaurants found"})
+    try {
+        //limit the number of Restaurants to be returned
+
+        const limit = Number(c.req.query('limit'))
+
+        const data = await getAllRestaurants(limit);
+        if (data == null || data.length == 0) {
+            return c.text("Restaurant not found", 404)
+        }
+        return c.json(data, 200);
+    } catch (error: any) {
+        return c.json({ error: error?.message }, 400)
     }
-    return c.json(restaurants,200)
 }
 
 // fetch one restaurants

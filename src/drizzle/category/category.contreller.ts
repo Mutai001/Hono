@@ -3,12 +3,23 @@ import { CreateCategory, DeleteCategory, fetchOneCategory, getAllCategory, updat
 
 //fetch all category
 export const getAllCategoryData = async (c: Context) => {
-    const category= await getAllCategory()
-    if(category === null){
-        return c.json({message: "No category found"})
+try {
+        //limit the number of Categorys to be returned
+
+        const limit = Number(c.req.query('limit'))
+
+        const data = await getAllCategory(limit);
+        if (data == null || data.length == 0) {
+            return c.text("Category not found", 404)
+        }
+        return c.json(data, 200);
+    } catch (error: any) {
+        return c.json({ error: error?.message }, 400)
     }
-    return c.json(category,200)
-}
+
+
+
+ }
 
 // fetch one category
 export const getOneCategoryData = async (c: Context) => {

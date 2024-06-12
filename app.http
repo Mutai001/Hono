@@ -1,329 +1,522 @@
-//Users
+###
+GET http://localhost:8000/api/ok
 
 ###
-GET http://localhost:3000/users/users
+GET http://localhost:8000/api/timeout
 
 ###
-GET http://localhost:3000/users/users/1
+GET http://localhost:8000/api/
 
 
 ###
-DELETE http://localhost:3000/users/users/4
+GET http://localhost:8000/api/users?limit=1
+Authorization: 
 
 ###
-POST http://localhost:3000/users/users
+
+GET http://localhost:8000/api/metrics
+
+###
+
+GET http://localhost:8000/api/users
+Authorization: 
+
+###
+GET http://localhost:8000/api/users/3
+Authorization: 
+
+###
+
+POST http://localhost:8000/api/users
+Authorization:
 Content-Type: application/json
 
 {
-  "name": "Dan",
-  "contact_phone": "07393937154",
-  "phone_verified": true,
-  "email": "Dan2@gmail.com",
-  "email_verified": true,
-  "confirmation_code": "102905",
-  "password": "@cdaniel220",
-  "created_at": "2024-09-11",
-  "updated_at": "2024-06-08"
+   
+    "name": "paul",
+    "contact_phone": "+254729023",
+    "phone_verified": true,
+    "email": "paulkim@gmail.com",
+    "email_verified": false,
+    "confirmation_code": "12000022"
 }
+
 ###
-PUT http://localhost:3000/users/users
-  {
-  "name": "Cyrus",
-  "contact_phone": "0722227154",
-  "phone_verified": true,
-  "email": "cyruskimtai@gmail.com",
-  "email_verified": true,
-  "confirmation_code": "10005",
-  "password": "@cyrusKim",
-  "created_at": "2024-02-01",
-  "updated_at": "2024-04-01"
-}
 
-
-### Login to user
-POST http://localhost:3000/auth/login
-Content-Type: application/json 
+PUT http://localhost:8000/api/users/2
+Content-Type: application/json
 
 {
-  "email": "cyruskimtai@gmail.com",
-  "password": "@cyrusKim"
-  
+    "name": "Kevin"
 }
+###
+DELETE http://localhost:8000/api/users/2
 
 ###
 
-
-
-
-
-
-
-//Address 
+GET http://localhost:8000/api/states
 
 ###
-GET http://localhost:3000/address/address
 
-###
-GET http://localhost:3000/address/address/2
+POST http://localhost:8000/api/states
+Content-Type: application/json
 
-
-###
-DELETE http://localhost:3000/address/address/1
-
-###
-PUT http://localhost:3000/address/address
-Content-Type: application/application/json
 {
-  "street_address_1": "300",
-  "street_address_2": "20901",
-  "zip_code": "20001",
-  "delivery_instructions": "After payment",
-  "user_id": 1,
-  "city_id": 3,
-  "created_at": "2024-03-05T00:00:00.000Z",
-  "updated_at": "2024-03-08T00:00:00.000Z"
+   
+    "name": "USA",
+    "code": "5344443",
+    "city": "NewYork"
 }
-###
-PUT http://localhost:3000/address/address/1
-
-
-
-//Category 
 
 ###
-GET http://localhost:3000/category/category
 
-###
-GET http://localhost:3000/category/category/2
+PUT http://localhost:8000/api/states/1
+Content-Type: application/json
 
-
-###
-DELETE http://localhost:3000/category/category/1
-
-###
-POST http://localhost:3000/category/category
-content-type: application/json
 {
-  "name": "drinks", 
+    "name": "USAA"
 }
 ###
-PUT http://localhost:3000/category/category/1
-content-type: application/json
+DELETE http://localhost:8000/api/states/1
+
+###
+
+GET http://localhost:8000/api/city
+
+###
+
+POST http://localhost:8000/api/city
+Content-Type: application/json
+
 {
-  "name": "drinks",  
+   
+    "name": "USA",
+    "state_id": 1,
+    "address": "12334 st",
+    "state": "New york",
+    "restaurant": "Chick-fil-A"
 }
 
-
-//City 
-
 ###
-GET http://localhost:3000/city/city
 
-###
-GET http://localhost:3000/city/city/3
+PUT http://localhost:8000/api/city/2
+Content-Type: application/json
 
-
-###
-DELETE http://localhost:3000/city/city/1
-
-###
-POST http://localhost:3000/city/city
-content-Content-Type: application/json
 {
-  "name": "Nairobi",  
-  "state_id": 8
+    "name": "USAA"
 }
 ###
-PUT http://localhost:3000/city/city/1
-content-Content-Type: application/json
+DELETE http://localhost:8000/api/city/2
+
+###
+
+GET http://localhost:8000/api/restaurants
+
+###
+
+POST http://localhost:8000/api/restaurants
+Content-Type: application/json
+
 {
-  "name": "Nairobi",  
-  "state_id": 8
+     "name": "Delicious Bistro",
+  "street_address": "123 Main Street",
+  "zip_code": "98101",
+  "city_id": 2,
+  "menu_item": "Spaghetti Carbonara",
+  "orders": "Pending",
+  "city": "Seattle",
+  "restaurant_owner": "John Doe"
+}
+
+###
+
+PUT http://localhost:8000/api/restaurants/2
+Content-Type: application/json
+
+{
+    "name": "Bistro"
+}
+###
+DELETE http://localhost:8000/api/restaurants/2
+
+###
+
+
+GET http://localhost:8000/api/category
+
+###
+
+POST http://localhost:8000/api/category
+Content-Type: application/json
+
+{
+     "name": "Delicious Bistro",
+  "menu_item": "123 Main Street"
+}
+
+###
+
+PUT http://localhost:8000/api/category/2
+Content-Type: application/json
+
+{
+    "name": "Bistro"
+}
+###
+DELETE http://localhost:8000/api/category/1
+
+###
+
+
+GET http://localhost:8000/api/menuItem
+
+###
+
+POST http://localhost:8000/api/menuItem
+Content-Type: application/json
+
+{
+     "name": "Delicious Bistro",
+  "restaurant_id": 2,
+  "category_id": 1,
+  "description": "pizza",
+  "ingredients": "served while hot",
+  "active":true
+}
+
+###
+
+PUT http://localhost:8000/api/menuItem/2
+Content-Type: application/json
+
+{
+    "name": "Bistro"
+}
+###
+DELETE http://localhost:8000/api/menuItem/2
+
+###
+
+GET http://localhost:8000/api/address
+
+###
+
+POST http://localhost:8000/api/address
+Content-Type: application/json
+
+{
+    "street_address_1": "huruma",
+    "street_address_2": "123 main st",
+    "zip_code": "r5trfg",
+    "delivery_instructions": "near petrol station",
+    "user_id":1,
+    "city_id": 2
+}
+
+###
+# not working:PUT
+PUT http://localhost:8000/api/address/1
+Content-Type: application/json
+
+{
+    "name": "hurumaa"
+}
+###
+DELETE http://localhost:8000/api/address/2
+
+###
+
+GET http://localhost:8000/api/comment
+
+###
+
+POST http://localhost:8000/api/comment
+Content-Type: application/json
+
+{
+    "order_id": 5,
+    "user_id": 1,
+    "comment_text": "nice meal",
+    "is_complaint": false,
+    "is_praise":true
+}
+
+###
+PUT http://localhost:8000/api/comment/1
+Content-Type: application/json
+
+{
+    "is_complaint": true
+}
+###
+DELETE http://localhost:8000/api/comment/2
+
+###
+GET http://localhost:8000/api/orders
+
+###
+
+POST http://localhost:8000/api/orders
+Content-Type: application/json
+
+{
+    "restaurant_id": 2,
+    "delivery_address_id": 1,
+    "user_id": 1,
+    "driver_id": 1,
+    "price":2344.50,
+    "order_menu_item":"pizza",
+    "order_status":"delivery",
+    "restaurant":"Resho hotel"
+}
+
+###
+PUT http://localhost:8000/api/orders/3
+Content-Type: application/json
+
+{
+    "restaurant": "Kevo hotel"
+}
+###
+DELETE http://localhost:8000/api/orders/3
+
+###
+GET http://localhost:8000/api/driver
+
+###
+
+POST http://localhost:8000/api/driver
+Content-Type: application/json
+
+{
+    "car_make": "toyota",
+    "car_model": "Volvo",
+    "car_year": 20023,
+    "user_id": 1,
+    "online": true,
+    "delivering": true,
+    "users":"Resho",
+    "orders":"order 1"
+}
+
+###
+PUT http://localhost:8000/api/driver/1
+Content-Type: application/json
+
+{
+    "car_model": "Subaru"
+}
+###
+DELETE http://localhost:8000/api/driver/2
+
+###
+GET http://localhost:8000/api/orderMenuItems
+
+###
+
+POST http://localhost:8000/api/orderMenuItems
+Content-Type: application/json
+
+{
+     "order_id": 5,
+    "menu_item_id": 3,
+    "quantity": 20,
+    "item_price": 3000,
+    "price": 23445.34,
+    "comment": "fast delivery",
+    "users":"Resho",
+    "menu_item":"shoe",
+    "orders":"order 1"
+}
+
+###
+PUT http://localhost:8000/api/orderMenuItems/3
+Content-Type: application/json
+
+{
+    "quantity": "30"
+}
+###
+DELETE http://localhost:8000/api/orderMenuItems/2
+
+###
+GET http://localhost:8000/api/orderStatus
+
+###
+
+POST http://localhost:8000/api/orderStatus
+Content-Type: application/json
+
+{
+     "order_id": 5,
+    "status_catalog_id": 1,
+    "orders": "shoes",
+    "status_catalog": "available"
+}
+
+###
+PUT http://localhost:8000/api/orderStatus/5
+Content-Type: application/json
+
+{
+    "orders": "clothes"
+}
+###
+DELETE http://localhost:8000/api/orderStatus/4
+
+###
+GET http://localhost:8000/api/restuarantOwner
+
+###
+
+POST http://localhost:8000/api/restuarantOwner
+Content-Type: application/json
+
+{
+     "restaurant_id": 2,
+    "owner_id": 1,
+    "users": "Freshia",
+    "restaurant": "Resho hotel"
+}
+
+###
+PUT http://localhost:8000/api/restuarantOwner/1
+Content-Type: application/json
+
+{
+    "restaurant": "Kevin hotel"
+}
+###
+DELETE http://localhost:8000/api/restuarantOwner/1
+
+###
+
+GET http://localhost:8000/api/statusCatalog
+
+###
+
+POST http://localhost:8000/api/statusCatalog
+Content-Type: application/json
+
+{
+     "name": "utensils",
+    "order_status": "delivered"
+}
+
+###
+PUT http://localhost:8000/api/statusCatalog/1
+Content-Type: application/json
+
+{
+    "name": "shoes"
+}
+###
+DELETE http://localhost:8000/api/statusCatalog/1
+
+###Authorization and Authentication
+
+POST http://localhost:8000/api/auth/register
+Content-Type: application/json
+
+{
+    "userId": 1,
+    "username": "Waruitha",
+    "password": "pass123"
+}
+
+### 
+POST http://localhost:8000/api/auth/login
+Content-Type: application/json
+
+{
+    "username": "Waruitha",
+    "password": "pass123"
+}
+
+###admin
+POST http://localhost:8000/api/auth/register
+Content-Type: application/json
+
+{
+    "username": "Njoki",
+    "userId": 3,
+    "password": "pass123",
+    "role": "admin"
+}
+
+### 
+POST http://localhost:8000/api/auth/login
+Content-Type: application/json
+
+{
+    "username": "Njoki",
+    "password": "pass123"
 }
 
 
 
-//Comments 
-
 ###
-GET http://localhost:3000/comments/comments
+GET http://localhost:8000/api/users
+Authorization:
 
-###
-GET http://localhost:3000/comments/comments/1
 
 
-###
-DELETE http://localhost:3000/comments/comments/1
 
-###
-POST http://localhost:3000/comments/comments
 
-###
-PUT http://localhost:3000/comments/comments/1
 
-//drivers 
 
-###
-GET http://localhost:3000/drivers/drivers
 
-###
-GET http://localhost:3000/drivers/drivers/1
 
 
-###
-DELETE http://localhost:3000/drivers/drivers/1
 
-###
-POST http://localhost:3000/drivers/drivers
 
-###
-PUT http://localhost:3000/drivers/drivers/1
 
 
-//menu_item 
 
-###
-GET http://localhost:3000/menu_item/menu_item
 
-###
-GET http://localhost:3000/menu_item/menu_item/1
 
 
-###
-DELETE http://localhost:3000/menu_item/menu_item/1
 
-###
-POST http://localhost:3000/menu_item/menu_item
 
-###
-PUT http://localhost:3000/menu_item/menu_item/1
 
 
 
-//order_menu_item 
 
-###
-GET http://localhost:3000/order_menu_item/order_menu_item
 
-###
-GET http://localhost:3000/order_menu_item/order_menu_item/1
 
 
-###
-DELETE http://localhost:3000/order_menu_item/order_menu_item/1
 
-###
-POST http://localhost:3000/order_menu_item/order_menu_item
 
-###
-PUT http://localhost:3000/order_menu_item/order_menu_item/1
 
-//orders 
 
-###
-GET http://localhost:3000/orders/orders
 
-###
-GET http://localhost:3000/orders/orders/1
 
 
-###
-DELETE http://localhost:3000/orders/orders/1
 
-###
-POST http://localhost:3000/orders/orders
 
-###
-PUT http://localhost:3000/orders/orders/
 
-//orders_status 
 
-###
-GET http://localhost:3000/orders_status/orders_status
 
-###
-GET http://localhost:3000/orders_status/orders_status/1
 
 
-###
-DELETE http://localhost:3000/orders_status/orders_status/1
 
-###
-POST http://localhost:3000/orders_status/orders_status
 
-###
-PUT http://localhost:3000/orders_status/orders_status/orders_status/1
 
 
-//restautant 
 
-###
-GET http://localhost:3000/restautant/restautant
 
-###
-GET http://localhost:3000/restautant/restautant/1
 
 
-###
-DELETE http://localhost:3000/restautant/restautant/1
 
-###
-POST http://localhost:3000/restautant/restautant
 
-###
-PUT http://localhost:3000/restautant/restautant/restautant/1
 
-//restaurant_owner 
 
-###
-GET http://localhost:3000/restaurant_owner/restaurant_owner
 
-###
-GET http://localhost:3000/restaurant_owner/restaurant_owner/1
 
 
-###
-DELETE http://localhost:3000/restaurant_owner/restaurant_owner/1
 
-###
-POST http://localhost:3000/restaurant_owner/restaurant_owner
 
-###
-PUT http://localhost:3000/restaurant_owner/restaurant_owner/1
 
-//state 
 
-###
-GET http://localhost:3000/state/states
 
-###
-GET http://localhost:3000/state/states/1
-
-
-###
-DELETE http://localhost:3000/state/states/1
-
-###
-POST http://localhost:3000/state/state
-
-###
-PUT http://localhost:3000/state/state/1
-
-//status_catalog 
-
-###
-GET http://localhost:3000/status_catalog/status_catalog
-
-###
-GET http://localhost:3000/status_catalog/status_catalog/1
-
-
-###
-DELETE http://localhost:3000/status_catalog/status_catalog/1
-
-###
-POST http://localhost:3000/status_catalog/status_catalog
-
-###
-PUT http://localhost:3000/status_catalog/status_catalog/1
 

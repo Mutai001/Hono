@@ -1,11 +1,15 @@
-//Fetch all restaurant
-
 import { eq } from "drizzle-orm"
 import db from "../db"
 import { restaurantinsert, restaurantTable, restaurantselect } from '../schema';
 
-export const getAllRestaurants = async (): Promise<restaurantselect[] | null> => {
-    return await db.query.restaurantTable.findMany()
+//Fetch all restaurant
+export const getAllRestaurants = async (limit?: number): Promise<restaurantselect[] | null> => {
+    if (limit) {
+        return await db.query.restaurantTable.findMany({
+            limit: limit
+        });
+    }
+    return await db.query.restaurantTable.findMany();
 
 }
 
@@ -23,8 +27,9 @@ export const CreateRestaurant = async (restaurant: restaurantinsert) => {
 }
 
 // update restaurant
-export const UpdateRestaurant = async () => {
- 
+export const UpdateRestaurant = async (id: number, Restaurant: restaurantinsert) => {
+    await db.update(restaurantTable).set(Restaurant).where(eq(restaurantTable.id, id))
+    return "Restaurant updated successfully";
 }
 
 // delete restaurant

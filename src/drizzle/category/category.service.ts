@@ -5,8 +5,14 @@ import { categoryinsert, categoryselect, categoryTable } from '../schema';
 import { updateCategoryData } from './category.contreller';
 
 //fetching all categories
-export const getAllCategory = async (): Promise<categoryselect[] | null> => {
-    return await db.query.categoryTable.findMany()
+     export const getAllCategory = async (limit?: number): Promise< categoryinsert[] | null> => {
+
+    if (limit) {
+        return await db.query.categoryTable.findMany({
+            limit: limit
+        });
+    }
+    return await db.query.categoryTable.findMany();
 } 
 
 //fetching one category

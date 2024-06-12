@@ -2,7 +2,7 @@ import { Hono } from 'hono';
 import { register } from 'module';
 import { zValidator } from '@hono/zod-validator'
 import { loginUserData, registerUser } from './auth.controller';
-import { registerUserSchema, loginUserSchema } from '../validators'
+import { registerUserSchema, loginUserSchema } from '../drizzle/validators'
 
 
 

@@ -1,0 +1,11 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.RestaurantOwnerRouter = void 0;
+const hono_1 = require("hono");
+const restaurant_owner_contreller_1 = require("./restaurant_owner.contreller");
+exports.RestaurantOwnerRouter = new hono_1.Hono();
+exports.RestaurantOwnerRouter.get("/restaurant_owners", restaurant_owner_contreller_1.getAllRestautantOwnersData);
+exports.RestaurantOwnerRouter.get("/restaurant_owners/:id", restaurant_owner_contreller_1.getOneRestautantOwnersData);
+exports.RestaurantOwnerRouter.post("/restaurant_owners", restaurant_owner_contreller_1.createRestautantOwnersData);
+exports.RestaurantOwnerRouter.delete("/restaurant_owners/:id", restaurant_owner_contreller_1.deleteRestautantOwnersData);
+exports.RestaurantOwnerRouter.put("/restaurant_owners/:id", restaurant_owner_contreller_1.updateRestautantOwnersData);

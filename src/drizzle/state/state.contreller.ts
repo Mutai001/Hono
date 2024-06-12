@@ -3,11 +3,23 @@ import { CreateState, DeleteState, fetchOneState, getAllStates, UpdateState } fr
 
 //fetch all states
 export const getAllStatesData = async (c: Context) => {
-    const states= await getAllStates()
-    if(states === null){
-        return c.json({message: "No states found"})
+    const id = parseInt(c.req.param("id"));
+    if (isNaN(id)) return c.text("Invalid ID", 400);
+
+    const State = await c.req.json();
+    try {
+        // search for the State
+        const searchedState = await getAllStates();
+        if (searchedState == undefined) return c.text("State not found", 404);
+        // get the data and update it
+        const res = await UpdateState(id, State);
+        // return a success message
+        if (!res) return c.text("State not updated", 404);
+
+        return c.json({ msg: res }, 201);
+    } catch (error: any) {
+        return c.json({ error: error?.message }, 400)
     }
-    return c.json(states,200)
 }
 
 // fetch one states
@@ -34,7 +46,23 @@ export const createStateData = async (c: Context, next: Function) => {
 
 //update states
 export const updateStatesData = async (c: Context) => {
-   
+    const id = parseInt(c.req.param("id"));
+    if (isNaN(id)) return c.text("Invalid ID", 400);
+
+    const State = await c.req.json();
+    try {
+        // search for the State
+        const searchedState = await getAllStates();
+        if (searchedState == undefined) return c.text("State not found", 404);
+        // get the data and update it
+        const res = await UpdateState(id, State);
+        // return a success message
+        if (!res) return c.text("State not updated", 404);
+
+        return c.json({ msg: res }, 201);
+    } catch (error: any) {
+        return c.json({ error: error?.message }, 400)
+    }
 }
 
 //delete states

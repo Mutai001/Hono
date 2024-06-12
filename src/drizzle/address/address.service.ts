@@ -1,13 +1,17 @@
 import { promise } from "zod";
-import { addressinsert, addressselect, addressTable, cityinsert, cityselect, cityTable} from '../schema';
+import { addressinsert, addressselect, addressTable, cityinsert, cityselect, cityTable } from '../schema';
 import db from "../db";
 import { eq } from "drizzle-orm";
 
 //fetching all address
-export const fetchAllAddress = async (): Promise<addressselect[]| null> => {
-    return await db.query.addressTable.findMany()
-} 
-
+export const fetchAllAddress = async (limit?: number): Promise<addressinsert[] | null> => {
+    if (limit) {
+        return await db.query.addressTable.findMany({
+            limit: limit
+        });
+    }
+    return await db.query.addressTable.findMany();
+}
 //fetching one address
 export const fetchOneAddress = async (id: number): Promise<addressinsert | undefined> =>{
     return await  db.query.addressTable.findFirst({where: eq(addressTable.id,id)})

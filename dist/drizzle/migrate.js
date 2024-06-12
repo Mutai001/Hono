@@ -24,7 +24,8 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 require("dotenv/config");
-const migrator_1 = require("drizzle-orm/node-postgres/migrator");
+// import { migrate } from "drizzle-orm/node-postgres/migrator";
+const migrator_1 = require("drizzle-orm/neon-http/migrator");
 const db_1 = __importStar(require("./db"));
 async function migration() {
     await (0, migrator_1.migrate)(db_1.default, { migrationsFolder: __dirname + "/migrations" });

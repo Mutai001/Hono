@@ -3,12 +3,23 @@ import { CreateMenuItem, DeleteMenuItem, fetchOneMenuItem, getAllMenuItem, Updat
 
 //fetch all a
 export const getAllMenuItemData = async (c: Context) => {
-    const menuItem = await getAllMenuItem()
-    if(menuItem === null){
-        return c.json({message: "No menuItem found"})
+ try {
+        //limit the number of menuItem to be returned
+
+        const limit = Number(c.req.query('limit'))
+
+        const data = await getAllMenuItem(limit);
+        if (data == null || data.length == 0) {
+            return c.text("Menu not found", 404)
+        }
+        return c.json(data, 200);
+    } catch (error: any) {
+        return c.json({ error: error?.message }, 400)
     }
-    return c.json(menuItem,200)
 }
+
+
+
 
 // fetch one menuItem
 export const getOneMenuItemData = async (c: Context) => {

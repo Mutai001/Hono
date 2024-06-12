@@ -3,11 +3,19 @@ import { CreateComments, DeleteComments, fetchOneComments, getAllComments, Updat
 
 //fetch all comments
 export const getAllCommentsData = async (c: Context) => {
-    const comments= await getAllComments()
-    if(comments === null){
-        return c.json({message: "No coments found"})
+        try {
+        //limit the number of Comments to be returned
+
+        const limit = Number(c.req.query('limit'))
+
+        const data = await getAllComments(limit);
+        if (data == null || data.length == 0) {
+            return c.text("Comment not found", 404)
+        }
+        return c.json(data, 200);
+    } catch (error: any) {
+        return c.json({ error: error?.message }, 400)
     }
-    return c.json(comments,200)
 }
 
 // fetch one comments

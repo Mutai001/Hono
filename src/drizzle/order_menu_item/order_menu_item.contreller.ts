@@ -3,11 +3,21 @@ import { CreateOrderMenuItem, DeleteOrderMenuItem, fetchOneOrderMenuItem, getAll
 
 //fetch all OrderMenuItem
 export const getAllOrderMenuItemData = async (c: Context) => {
-    const OrderMenuItem= await getAllOrderMenuItem()
-    if(OrderMenuItem === null){
-        return c.json({message: "No OrderMenuItem found"})
+ try {
+        //limit the number of OrderMenuItems to be returned
+
+        const limit = Number(c.req.query('limit'))
+
+        const data = await getAllOrderMenuItem(limit);
+        if (data == null || data.length == 0) {
+            return c.text("OrderMenuItem not found", 404)
+        }
+        return c.json(data, 200);
+    } catch (error: any) {
+        return c.json({ error: error?.message }, 400)
     }
-    return c.json(OrderMenuItem,200)
+
+
 }
 
 // fetch one OrderMenuItem

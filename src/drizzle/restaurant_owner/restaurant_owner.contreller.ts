@@ -3,11 +3,19 @@ import { CreateRestautantOwner, DeleteRestautantOwner, fetchOneRestautantOwners,
 
 //fetch all RestautantOwners
 export const getAllRestautantOwnersData = async (c: Context) => {
-    const restaurant_owners= await getAllRestautantOwners()
-    if(restaurant_owners === null){
-        return c.json({message: "No restaurant_owners found"})
+       try {
+        //limit the number of RestuarantOwners to be returned
+
+        const limit = Number(c.req.query('limit'))
+
+        const data = await getAllRestautantOwners(limit);
+        if (data == null || data.length == 0) {
+            return c.text("RestuarantOwner not found", 404)
+        }
+        return c.json(data, 200);
+    } catch (error: any) {
+        return c.json({ error: error?.message }, 400)
     }
-    return c.json(restaurant_owners,200)
 }
 
 // fetch one restaurant_owners
@@ -34,7 +42,22 @@ export const createRestautantOwnersData = async (c: Context, next: Function) => 
 
 //update restaurant_owners
 export const updateRestautantOwnersData = async (c: Context) => {
-   
+     const id = parseInt(c.req.param("id"));
+    if (isNaN(id)) return c.text("Invalid ID", 400);
+    const RestuarantOwner = await c.req.json();
+    try {
+        // search for the RestuarantOwner
+        const searchedRestuarantOwner = await getAllRestautantOwners(id);
+        if (searchedRestuarantOwner == undefined) return c.text("RestuarantOwner not found", 404);
+        // get the data and update it
+        const res = await UpdateRestautantOwner(id, RestuarantOwner);
+        // return a success message
+        if (!res) return c.text("RestuarantOwner not updated", 404);
+
+        return c.json({ msg: res }, 201);
+    } catch (error: any) {
+        return c.json({ error: error?.message }, 400)
+    }
 }
 
 //delete restaurant_owners

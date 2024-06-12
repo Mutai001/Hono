@@ -23,8 +23,9 @@ export const CreateState = async (states: stateinsert) => {
 }
 
 // update states
-export const UpdateState = async () => {
- 
+export const UpdateState = async (id: number, State: stateinsert) => {
+    await db.update(stateTable).set(State).where(eq(stateTable.id, id))
+    return "State updated successfully";
 }
 
 // delete states

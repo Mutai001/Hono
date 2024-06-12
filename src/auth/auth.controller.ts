@@ -1,7 +1,7 @@
 import dotenv from 'dotenv';
 import { Context } from 'hono';
 import * as bcrypt from 'bcrypt';
-import {  loginUser, createAuthUserService } from "./auth.service";
+import {  loginUserService, createAuthUserService } from "./auth.service";
 
 
 
@@ -28,7 +28,7 @@ export const registerUser = async (c: Context) => {
 export const loginUserData = async (c: Context) => {
        const details = await c.req.json()
        console.log(details)
-    const user = await loginUser(details)
+    const user = await loginUserService(details)
     if(user === null){
         return c.json({message: "No user found"},404)
     }

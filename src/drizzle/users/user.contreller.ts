@@ -1,15 +1,23 @@
 import { Context } from "hono";
-import { CreateUser, DeleteUser, fetchOneUsers, getAllUsers, loginUser, UpdateUser } from "./user.service";
+import { CreateUser, DeleteUser, fetchOneUsers, getAllUsers, UpdateUser } from "./user.service";
 import * as bcrypt from 'bcrypt';
 
 
 //fetch all users
 export const getAllUsersData = async (c: Context) => {
-    const users= await getAllUsers()
-    if(users === null){
-        return c.json({message: "No users found"})
+     try {
+        //limit the number of users to be returned
+
+        const limit = Number(c.req.query('limit'))
+
+        const data = await getAllUsers(limit);
+        if (data == null || data.length == 0) {
+            return c.text("User not found", 404)
+        }
+        return c.json(data, 200);
+    } catch (error: any) {
+        return c.json({ error: error?.message }, 400)
     }
-    return c.json(users,200)
 }
 
 // fetch one user

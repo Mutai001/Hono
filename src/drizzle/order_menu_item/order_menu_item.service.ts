@@ -2,10 +2,14 @@ import { eq } from "drizzle-orm"
 import db from "../db"
 import {orderMenuItemselect, orderMenuItemTable, orderMenuIteminsert, menuItemsselect } from '../schema';
 
-//Fetch all OrderMenuItem
-export const getAllOrderMenuItem = async (): Promise<orderMenuItemselect[] | null> => {
-    return await db.query.orderMenuItemTable.findMany()
-
+//Fetch limit OrderMenuItem
+export const getAllOrderMenuItem = async (limit?: number): Promise<orderMenuItemselect[] | null> => {
+    if (limit) {
+        return await db.query.orderMenuItemTable.findMany({
+            limit: limit
+        });
+    }
+    return await db.query.orderMenuItemTable.findMany();
 }
 
 // fetch one OrderMenuItem

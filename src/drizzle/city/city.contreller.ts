@@ -3,11 +3,22 @@ import { CreateCity, DeleteCity, fetchOneCity, getAllCity,UpdateCity } from "./c
 
 //fetch all city
 export const getAllCitysData = async (c: Context) => {
-    const city= await getAllCity()
-    if(city === null){
-        return c.json({message: "No city found"})
+
+ try {
+        //limit the number of Citys to be returned
+
+        const limit = Number(c.req.query('limit'))
+
+        const data = await getAllCity(limit);
+        if (data == null || data.length == 0) {
+            return c.text("City not found", 404)
+        }
+        return c.json(data, 200);
+    } catch (error: any) {
+        return c.json({ error: error?.message }, 400)
     }
-    return c.json(city,200)
+
+
 }
 
 // fetch one city

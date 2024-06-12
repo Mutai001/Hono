@@ -4,8 +4,14 @@ import { eq } from "drizzle-orm"
 import db from "../db"
 import { cityselect, cityTable,cityinsert } from '../schema';
 
-export const getAllCity = async (): Promise<cityselect[] | null> => {
-    return await db.query.cityTable.findMany()
+export const getAllCity = async (limit?: number): Promise<cityinsert[] | null> => {
+    // return await db.query.cityTable.findMany()
+     if (limit) {
+        return await db.query.cityTable.findMany({
+            limit: limit
+        });
+    }
+    return await db.query.cityTable.findMany();
 
 }
 

@@ -3,11 +3,19 @@ import { CreateOrdersStatus, DeleteOrderStatus, fetchOneOrderStatus, getAllOrder
 
 //fetch all OrderStatus
 export const getAllOrderStatusData = async (c: Context) => {
-    const OrderStatus= await getAllOrderStatus()
-    if(OrderStatus === null){
-        return c.json({message: "No OrderStatus found"})
+       try {
+        //limit the number of OrderStatuss to be returned
+
+        const limit = Number(c.req.query('limit'))
+
+        const data = await getAllOrderStatus(limit);
+        if (data == null || data.length == 0) {
+            return c.text("OrderStatus not found", 404)
+        }
+        return c.json(data, 200);
+    } catch (error: any) {
+        return c.json({ error: error?.message }, 400)
     }
-    return c.json(OrderStatus,200)
 }
 
 // fetch one OrderStatus
@@ -34,7 +42,23 @@ export const createOrderstatusData = async (c: Context, next: Function) => {
 
 //update OrderStatus
 export const updateOrderStatusData = async (c: Context) => {
-   
+      const id = parseInt(c.req.param("id"));
+    if (isNaN(id)) return c.text("Invalid ID", 400);
+
+    const OrderStatus = await c.req.json();
+    try {
+        // search for the OrderStatus
+        const searchedOrderStatus = await getAllOrderStatus(id);
+        if (searchedOrderStatus == undefined) return c.text("OrderStatus not found", 404);
+        // get the data and update it
+        const res = await UpdateOrdersStatus(id, OrderStatus);
+        // return a success message
+        if (!res) return c.text("OrderStatus not updated", 404);
+
+        return c.json({ msg: res }, 201);
+    } catch (error: any) {
+        return c.json({ error: error?.message }, 400)
+    }
 }
 
 //delete OrderStatus

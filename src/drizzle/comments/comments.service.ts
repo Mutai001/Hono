@@ -4,8 +4,15 @@ import { eq } from "drizzle-orm"
 import db from "../db"
 import { commentsselect, commentsinsert, commentsTable } from '../schema';
 
-export const getAllComments = async (): Promise<commentsselect[] | null> => {
-    return await db.query.commentsTable.findMany()
+  export const getAllComments = async (limit?: number): Promise<commentsselect[] | null> => {
+  
+    // return await db.query.commentsTable.findMany()
+     if (limit) {
+        return await db.query.commentsTable.findMany({
+            limit: limit
+        });
+    }
+    return await db.query.commentsTable.findMany();
 
 }
 

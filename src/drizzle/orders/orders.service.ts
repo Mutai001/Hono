@@ -1,11 +1,15 @@
-//Fetch all Orders
-
 import { eq } from "drizzle-orm"
 import db from "../db"
 import { ordersselect, ordersTable, ordersinsert } from '../schema';
 
-export const getAllOrders = async (): Promise<ordersselect[] | null> => {
-    return await db.query.ordersTable.findMany()
+//Fetch all Orders
+export const getAllOrders = async (limit?: number): Promise<ordersselect[] | null> => {
+    if (limit) {
+        return await db.query.ordersTable.findMany({
+            limit: limit
+        });
+    }
+    return await db.query.ordersTable.findMany();
 
 }
 
@@ -23,9 +27,13 @@ export const CreateOrder = async (Orders: ordersinsert) => {
 }
 
 // update Order
-export const UpdateOrders = async () => {
- 
+    export const UpdateOrders = async (id: number, Order: ordersinsert) => {
+    await db.update(ordersTable).set(Order).where(eq(ordersTable.id, id))
+    return "Order updated successfully";
 }
+
+ 
+
 
 // delete Order
 export const DeleteOrder = async (id: number) => {
