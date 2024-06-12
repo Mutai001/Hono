@@ -6,12 +6,8 @@ import { adminRoleAuth } from "../middleware/bearAuth";
 
 
 export const driverRouter = new Hono();
-driverRouter.get("/driver",adminRoleAuth, getAllDriversData);
-driverRouter.get("/driver/:id",adminRoleAuth, getOneDriverData);
-driverRouter.post("/driver", adminRoleAuth,zValidator('json', driverSchema, (result, c) => {
-    if (!result.success) {
-        return c.json(result.error, 400)
-    }
-}), createDriverData)
+driverRouter.get("/driver", getAllDriversData);
+driverRouter.get("/driver/:id", getOneDriverData);
+driverRouter.post("/driver", createDriverData)
 driverRouter.delete("/driver/:id",adminRoleAuth, deleteDriverData);
-driverRouter.put("/driver/:id", adminRoleAuth, updateDriverData);
+driverRouter.put("/driver/:id",  updateDriverData);

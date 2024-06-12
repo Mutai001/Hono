@@ -5,25 +5,20 @@ GET http://localhost:8000/api/ok
 GET http://localhost:8000/api/timeout
 
 ###
-GET http://localhost:8000/api/
+ GET http://localhost:8000/api/metrics
 
 
 ###
-GET http://localhost:8000/api/users?limit=1
-Authorization: 
-
-###
-
-GET http://localhost:8000/api/metrics
+GET http://localhost:8000/api/users
 
 ###
 
 GET http://localhost:8000/api/users
-Authorization: 
+
 
 ###
-GET http://localhost:8000/api/users/3
-Authorization: 
+GET http://localhost:8000/api/users/1
+
 
 ###
 
@@ -33,28 +28,35 @@ Content-Type: application/json
 
 {
    
-    "name": "paul",
+    "name": "Moses",
     "contact_phone": "+254729023",
     "phone_verified": true,
-    "email": "paulkim@gmail.com",
+    "email": "Moses@gmail.com",
     "email_verified": false,
-    "confirmation_code": "12000022"
+    "confirmation_code": "12000022",
+     "password": "emmaniue123",
+      "created_at": "2022-03-08 00:00:00",
+  "updated_at": "2022-03-12 00:00:00"
 }
 
 ###
 
-PUT http://localhost:8000/api/users/2
+PUT http://localhost:8000/api/users/18
 Content-Type: application/json
 
 {
-    "name": "Kevin"
+    "name": "Cyrus"
 }
 ###
 DELETE http://localhost:8000/api/users/2
 
-###
 
+###
 GET http://localhost:8000/api/states
+
+
+###
+GET http://localhost:8000/api/states/4
 
 ###
 
@@ -62,19 +64,18 @@ POST http://localhost:8000/api/states
 Content-Type: application/json
 
 {
-   
-    "name": "USA",
-    "code": "5344443",
-    "city": "NewYork"
-}
+  "id": 10,
+  "name": "Djibouti",
+  "code": "211"
+  }
 
 ###
 
-PUT http://localhost:8000/api/states/1
+PUT http://localhost:8000/api/states/4
 Content-Type: application/json
 
 {
-    "name": "USAA"
+    "name": "Ghana"
 }
 ###
 DELETE http://localhost:8000/api/states/1
@@ -85,16 +86,19 @@ GET http://localhost:8000/api/city
 
 ###
 
+GET http://localhost:8000/api/city/2
+
+###
 POST http://localhost:8000/api/city
 Content-Type: application/json
 
 {
    
-    "name": "USA",
+    "name": "Niger",
     "state_id": 1,
-    "address": "12334 st",
-    "state": "New york",
-    "restaurant": "Chick-fil-A"
+    "address": "234",
+    "state": "Abuja",
+    "restaurant": "Luckymall"
 }
 
 ###
@@ -103,39 +107,46 @@ PUT http://localhost:8000/api/city/2
 Content-Type: application/json
 
 {
-    "name": "USAA"
+    "name": "Niger"
 }
 ###
 DELETE http://localhost:8000/api/city/2
 
 ###
 
-GET http://localhost:8000/api/restaurants
+GET http://localhost:8000/api/restaurant
 
 ###
+GET http://localhost:8000/api/restaurant/1
 
-POST http://localhost:8000/api/restaurants
+
+###
+POST http://localhost:8000/api/restaurant
 Content-Type: application/json
 
 {
-     "name": "Delicious Bistro",
+ "name": "Fast food ",
   "street_address": "123 Main Street",
   "zip_code": "98101",
   "city_id": 2,
   "menu_item": "Spaghetti Carbonara",
   "orders": "Pending",
   "city": "Seattle",
-  "restaurant_owner": "John Doe"
+ "city_id": 1,
+ "created_at": "2023-09-02T00:00:00.000Z",
+ "updated_at": "2023-01-02T00:00:00.000Z"
 }
 
 ###
 
-PUT http://localhost:8000/api/restaurants/2
+PUT http://localhost:8000/api/restaurant/1
 Content-Type: application/json
+    
+    {
+        "name": "weston 001"
+    }
 
-{
-    "name": "Bistro"
-}
+
 ###
 DELETE http://localhost:8000/api/restaurants/2
 
@@ -150,7 +161,7 @@ POST http://localhost:8000/api/category
 Content-Type: application/json
 
 {
-     "name": "Delicious Bistro",
+    "name": "Delicious Bistro",
   "menu_item": "123 Main Street"
 }
 
@@ -160,7 +171,7 @@ PUT http://localhost:8000/api/category/2
 Content-Type: application/json
 
 {
-    "name": "Bistro"
+    "name": "Soft drinks"
 }
 ###
 DELETE http://localhost:8000/api/category/1
@@ -168,32 +179,50 @@ DELETE http://localhost:8000/api/category/1
 ###
 
 
-GET http://localhost:8000/api/menuItem
+GET http://localhost:8000/api/MenuItem
 
 ###
 
-POST http://localhost:8000/api/menuItem
+POST http://localhost:8000/api/MenuItem
 Content-Type: application/json
 
 {
-     "name": "Delicious Bistro",
+  "name": "Delicious Bistro",
   "restaurant_id": 2,
   "category_id": 1,
   "description": "pizza",
   "ingredients": "served while hot",
-  "active":true
+  "active": true,
+  "created_at": "2024-01-10T00:00:00.000Z",
+  "updated_at": "2024-01-12T00:00:00.000Z",
+  "category": 1
 }
 
 ###
 
-PUT http://localhost:8000/api/menuItem/2
+PUT http://localhost:8000/api/MenuItem/2
 Content-Type: application/json
 
 {
     "name": "Bistro"
 }
 ###
-DELETE http://localhost:8000/api/menuItem/2
+DELETE http://localhost:8000/api/MenuItem/2
+
+###
+GET http://localhost:8000/api/OrderMenuItem
+
+###
+POST http://localhost:8000/api/OrderMenuItem
+Content-Type: application/json
+{
+    "order_id": 5,
+    "order_id": 11,
+    "menu_item_id": 1,
+    "quantity": 20,
+    "created_at": "2023-06-04T13:00:00.000Z",
+    "updated_at": "2023-08-04T13:00:00.000Z"
+}
 
 ###
 
@@ -205,21 +234,20 @@ POST http://localhost:8000/api/address
 Content-Type: application/json
 
 {
-    "street_address_1": "huruma",
-    "street_address_2": "123 main st",
-    "zip_code": "r5trfg",
-    "delivery_instructions": "near petrol station",
+    "street_address_1": "29990",
+    "street_address_2": "199300",
+    "zip_code": "22030k",
+    "delivery_instructions": "Behind citymall",
     "user_id":1,
     "city_id": 2
 }
 
 ###
-# not working:PUT
 PUT http://localhost:8000/api/address/1
 Content-Type: application/json
 
 {
-    "name": "hurumaa"
+    "name": "29990"
 }
 ###
 DELETE http://localhost:8000/api/address/2
@@ -236,7 +264,7 @@ Content-Type: application/json
 {
     "order_id": 5,
     "user_id": 1,
-    "comment_text": "nice meal",
+    "comment_text": "delicious meal",
     "is_complaint": false,
     "is_praise":true
 }
@@ -267,7 +295,7 @@ Content-Type: application/json
     "price":2344.50,
     "order_menu_item":"pizza",
     "order_status":"delivery",
-    "restaurant":"Resho hotel"
+    "restaurant":"Weston"
 }
 
 ###
@@ -275,7 +303,7 @@ PUT http://localhost:8000/api/orders/3
 Content-Type: application/json
 
 {
-    "restaurant": "Kevo hotel"
+    "restaurant": "West hotel"
 }
 ###
 DELETE http://localhost:8000/api/orders/3
@@ -290,31 +318,32 @@ Content-Type: application/json
 
 {
     "car_make": "toyota",
-    "car_model": "Volvo",
-    "car_year": 20023,
+    "car_model": "crown",
+    "car_year": 2020,
     "user_id": 1,
     "online": true,
     "delivering": true,
-    "users":"Resho",
-    "orders":"order 1"
-}
+    "delivering": true,
+    "cretaed_at": "2023-01-02T00:00:00.000Z",
+    "updated_at": "2023-01-02T00:00:00.000Z"
+    }
 
 ###
 PUT http://localhost:8000/api/driver/1
 Content-Type: application/json
 
 {
-    "car_model": "Subaru"
+    "car_model": "mercedes"
 }
 ###
 DELETE http://localhost:8000/api/driver/2
 
 ###
-GET http://localhost:8000/api/orderMenuItems
+GET http://localhost:8000/api/OrderMenuItem
 
 ###
 
-POST http://localhost:8000/api/orderMenuItems
+POST http://localhost:8000/api/OrderMenuItem
 Content-Type: application/json
 
 {
@@ -330,32 +359,33 @@ Content-Type: application/json
 }
 
 ###
-PUT http://localhost:8000/api/orderMenuItems/3
+PUT http://localhost:8000/api/OrderMenuItem/3
 Content-Type: application/json
 
 {
     "quantity": "30"
 }
 ###
-DELETE http://localhost:8000/api/orderMenuItems/2
+DELETE http://localhost:8000/api/OrderMenuItem/2
 
 ###
-GET http://localhost:8000/api/orderStatus
+GET http://localhost:8000/api/OrderStatus
 
 ###
 
-POST http://localhost:8000/api/orderStatus
+POST http://localhost:8000/api/OrderStatus
 Content-Type: application/json
 
 {
-     "order_id": 5,
-    "status_catalog_id": 1,
-    "orders": "shoes",
-    "status_catalog": "available"
+   "id": 10,
+    "order_id": 13,
+    "status_id": 8,
+    "created_at": "2024-06-02T11:00:00.000Z",
+    "updated_at": "2023-06-02T12:00:00.000Z"
 }
 
 ###
-PUT http://localhost:8000/api/orderStatus/5
+PUT http://localhost:8000/api/OrderStatus/2
 Content-Type: application/json
 
 {
@@ -365,53 +395,53 @@ Content-Type: application/json
 DELETE http://localhost:8000/api/orderStatus/4
 
 ###
-GET http://localhost:8000/api/restuarantOwner
+GET http://localhost:8000/api/restaurant_owners
 
 ###
 
-POST http://localhost:8000/api/restuarantOwner
+POST http://localhost:8000/api/restaurant_owners
 Content-Type: application/json
 
 {
      "restaurant_id": 2,
     "owner_id": 1,
-    "users": "Freshia",
-    "restaurant": "Resho hotel"
+    "users": "John Doe",
+    "restaurant": " Weston"
 }
 
 ###
-PUT http://localhost:8000/api/restuarantOwner/1
+PUT http://localhost:8000/api/restaurant_owners/1
 Content-Type: application/json
 
 {
-    "restaurant": "Kevin hotel"
+    "restaurant": "Weston"
 }
 ###
-DELETE http://localhost:8000/api/restuarantOwner/1
+DELETE http://localhost:8000/api/restaurant_owners/1
 
 ###
 
-GET http://localhost:8000/api/statusCatalog
+GET http://localhost:8000/api/status_catalog
 
 ###
 
-POST http://localhost:8000/api/statusCatalog
+POST http://localhost:8000/api/status_catalog
 Content-Type: application/json
 
 {
-     "name": "utensils",
+     "name": "Clothes",
     "order_status": "delivered"
 }
 
 ###
-PUT http://localhost:8000/api/statusCatalog/1
+PUT http://localhost:8000/api/status_catalog/1
 Content-Type: application/json
 
 {
     "name": "shoes"
 }
 ###
-DELETE http://localhost:8000/api/statusCatalog/1
+DELETE http://localhost:8000/api/status_catalog/1
 
 ###Authorization and Authentication
 
@@ -420,8 +450,8 @@ Content-Type: application/json
 
 {
     "userId": 1,
-    "username": "Waruitha",
-    "password": "pass123"
+    "username": "Cyrus",
+    "password": "@cyruskimutai"
 }
 
 ### 
@@ -429,35 +459,35 @@ POST http://localhost:8000/api/auth/login
 Content-Type: application/json
 
 {
-    "username": "Waruitha",
+    "username": "Cyrus",
     "password": "pass123"
 }
 
 ###admin
-POST http://localhost:8000/api/auth/register
+POST http://localhost:8000/api/register
 Content-Type: application/json
 
 {
-    "username": "Njoki",
-    "userId": 3,
-    "password": "pass123",
+    "user_id": 1,    
+    "name": "Cyrus",
+    "password": "Pass0001",
     "role": "admin"
 }
 
 ### 
-POST http://localhost:8000/api/auth/login
+POST http://localhost:8000/api/login
 Content-Type: application/json
 
 {
-    "username": "Njoki",
-    "password": "pass123"
+    "username": "Kelvin",
+    "password": "Kelvin123"
 }
 
 
 
 ###
 GET http://localhost:8000/api/users
-Authorization:
+
 
 
 

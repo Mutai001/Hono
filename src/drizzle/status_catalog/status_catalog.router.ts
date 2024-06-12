@@ -6,12 +6,8 @@ import { adminRoleAuth } from "../middleware/bearAuth";
 
 
 export const status_catalogRouter = new Hono();
-status_catalogRouter.get("/status_catalog",adminRoleAuth, getAllstatusCatalogsData);
+status_catalogRouter.get("/status_catalog", getAllstatusCatalogsData);
 status_catalogRouter.get("/status_catalog/:id", getOnestatusCatalogData);
-status_catalogRouter.post("/status_catalog",adminRoleAuth, zValidator('json', statusCatalogSchema, (result, c) => {
-    if (!result.success) {
-        return c.json(result.error, 400)
-    }
-}), createstatusCatalogData);
-status_catalogRouter.delete("/status_catalog/:id", adminRoleAuth,deletestatusCatalogData);
-status_catalogRouter.put("/status_catalog/:id", adminRoleAuth,updatestatusCatalogData);
+status_catalogRouter.post("/status_catalog", createstatusCatalogData);
+status_catalogRouter.delete("/status_catalog/:id",deletestatusCatalogData);
+status_catalogRouter.put("/status_catalog/:id", updatestatusCatalogData);

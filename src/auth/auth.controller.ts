@@ -13,6 +13,7 @@ export const registerUser = async (c: Context) => {
         const pass = user.password;
         const hashedPassword = await bcrypt.hash(pass, 10);
         user.password = hashedPassword;
+        console.log(user)
         const createdUser = await createAuthUserService(user);
         if (!createdUser) return c.text("User not created", 404);
         return c.json({ msg: createdUser }, 201);

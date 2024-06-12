@@ -1,5 +1,6 @@
 import { Context } from "hono";
 import { CreateMenuItem, DeleteMenuItem, fetchOneMenuItem, getAllMenuItem, UpdateMenuItem } from './menu_item.service';
+import { any } from "zod";
 
 //fetch all a
 export const getAllMenuItemData = async (c: Context) => {
@@ -38,8 +39,8 @@ export const createMenuItemData = async (c: Context, next: Function) => {
        const menuItem = await c.req.json()
     const response = await CreateMenuItem(menuItem)
     return c.json({message: response},201)
-    } catch(err){
-        return c.json({message: err},500)
+    } catch(err:any){
+        return c.json({message: err?.message},500)
     }
 }
 
@@ -50,7 +51,6 @@ export const updateMenuItemData = async (c: Context) => {
         if (isNaN(id)) return c.text('Invalid id', 400);
         const menuItem = await c.req.json();
         const MenuItem = await UpdateMenuItem(id, menuItem);
-
         if (!UpdateMenuItem) return c.text('Menu_item not updated', 400);
         return c.json({ msg: UpdateMenuItem }, 200);
     } catch (error: any) {

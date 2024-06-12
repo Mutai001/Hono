@@ -1,4 +1,4 @@
-import { pgTable, timestamp,pgEnum, integer, text, serial, decimal, boolean, varchar } from 'drizzle-orm/pg-core';
+import { pgTable,pgEnum, timestamp,date, integer, text, serial, decimal, boolean, varchar } from 'drizzle-orm/pg-core';
 import { relations } from "drizzle-orm";
 import { type } from 'os';
 
@@ -12,8 +12,8 @@ export const usersTable = pgTable("users", {
   email_verified: boolean("email_verified"),
   confirmation_code: varchar("confirmation_code", { length: 10 }),
   password: varchar("password", { length: 100 }).notNull(),
-  created_at: timestamp("created_at").notNull(),
-  updated_at: timestamp("updated_at").notNull(),
+  created_at: date("created_at"),
+  updated_at: date("updated_at"),
 });
 
 // drivers table no. 2
@@ -289,6 +289,30 @@ export const orderMenuItemRelations = relations(orderMenuItemTable, ({ one }) =>
 }));
 
 
+export const  roleEnum = pgEnum("role", ["admin","user"])
+ 
+export const AuthOneUsersTable = pgTable("auth_one_users", {
+ id: serial("id").primaryKey(),
+    userId: integer("user_id").notNull().references(() => usersTable.id, { onDelete: "cascade" }),
+    password: varchar("password", { length: 100 }),
+    username: varchar("username", { length: 100 }),
+    role: roleEnum("role").default("user")
+});
+
+
+const AuthOneUserRelations = relations (AuthOneUsersTable, ({one}) => ({
+  user: one(usersTable, {
+    fields: [AuthOneUsersTable.userId],
+    references: [usersTable.id],
+  }),
+  }));
+
+
+
+
+
+export type  AuthOneUserSelect = typeof AuthOneUsersTable.$inferSelect;
+export type  AuthOneUserInsert = typeof AuthOneUsersTable.$inferInsert;
 
 
 

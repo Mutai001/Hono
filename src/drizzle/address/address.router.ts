@@ -7,13 +7,8 @@ import { adminRoleAuth, userRoleAuth } from "../middleware/bearAuth";
 
 
 export const addressRouter = new Hono();
-  addressRouter.get("/address", adminRoleAuth, getAllAddressData);
-  addressRouter.get("/address/:id",userRoleAuth, fetchOneAddressData);
-  addressRouter.post("/address",adminRoleAuth, zValidator('json', addressSchema, (result, c) => {
-    if (!result.success) {
-        return c.json(result.error, 400)
-    }
-}), createAddressData);
-
-addressRouter.delete("/address/:id", adminRoleAuth, deleteAddressData);
-addressRouter.put("/address/:id", adminRoleAuth, updateAddressData);
+addressRouter.get("/address", getAllAddressData);
+addressRouter.get("/address/:id", fetchOneAddressData);
+addressRouter.post("/address",createAddressData);
+addressRouter.delete("/address/:id",  deleteAddressData);
+addressRouter.put("/address/:id",  updateAddressData);

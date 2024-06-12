@@ -21,8 +21,12 @@ return await db.query.menuItemsTable.findFirst({
 
 // create menuItem
 export const CreateMenuItem = async (menuItem: menuItemsinsert) => {
-    await db.insert(menuItemsTable).values(menuItem)
-    return "menuItem created successfully"
+       try{
+        await db.insert(menuItemsTable).values(menuItem)
+        return "menuItem created successfully"
+    }catch(err: any){
+        return err?.message
+    }
 }
 
 // update menuItem

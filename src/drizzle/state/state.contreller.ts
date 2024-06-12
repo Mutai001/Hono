@@ -3,22 +3,16 @@ import { CreateState, DeleteState, fetchOneState, getAllStates, UpdateState } fr
 
 //fetch all states
 export const getAllStatesData = async (c: Context) => {
-    const id = parseInt(c.req.param("id"));
-    if (isNaN(id)) return c.text("Invalid ID", 400);
-
-    const State = await c.req.json();
-    try {
-        // search for the State
-        const searchedState = await getAllStates();
-        if (searchedState == undefined) return c.text("State not found", 404);
-        // get the data and update it
-        const res = await UpdateState(id, State);
-        // return a success message
-        if (!res) return c.text("State not updated", 404);
-
-        return c.json({ msg: res }, 201);
-    } catch (error: any) {
-        return c.json({ error: error?.message }, 400)
+      try{
+        const data = await getAllStates()
+        if(data == null || data.length == 0){
+            return c.json({massage: "States not found"}, 404)
+        }else{
+            return c.json(data, 200)
+        }
+    }
+    catch(error: any){
+        return c.json({error: error?.message}, 400)
     }
 }
 

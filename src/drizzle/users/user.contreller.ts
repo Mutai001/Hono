@@ -35,18 +35,18 @@ export const createUsersData = async (c: Context) => {
     
     try{
        const user = await c.req.json()
-       const password = user.password
-      const hashedPassword = await bcrypt.hash(password, 10)
+       const pass = user.password
+      const hashedPassword = await bcrypt.hash(pass, 10)
         user.password = hashedPassword 
-    const response = await CreateUser(user)
+    const response = await CreateUser(user);
+    if(!response){
+        return c.text("User not created",404)
+    }
     return c.json({message: response},201)
     } catch(error: any){
         return c.json({message: error?.message},500)
     }
 }
-
-
-
 
 
 //update user
@@ -56,8 +56,7 @@ export const updateUsersData = async (c: Context) => {
         if (isNaN(id)) return c.text('Invalid id', 400);
         const city = await c.req.json();
         const City = await UpdateUser(id, city);
-
-        if (!UpdateUser) return c.text('City not updated', 400);
+        if (!UpdateUser) return c.text('User not updated', 400);
         return c.json({ msg: UpdateUser }, 200);
     } catch (error: any) {
         return c.json({ error: error?.message }, 400);

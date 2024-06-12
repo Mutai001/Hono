@@ -42,7 +42,16 @@ export const createRestaurantsData = async (c: Context, next: Function) => {
 
 //update restaurant
 export const updateRestaurantsData = async (c: Context) => {
-   
+   try{
+    const id = parseInt(c.req.param('id'),10);
+    if(isNaN(id)) return c.text('Restaurant not updated',400);
+    const restaurant = await c.req.json();
+    const req = await UpdateRestaurant(id,restaurant);
+    if (!UpdateRestaurant) return c.text('Restaurant not updated', 400);
+    return c.json({ msg: UpdateRestaurant }, 200);
+   }catch (error: any) {
+    return c.json({ error: error?.message }, 400);
+}
 }
 
 //delete restaurant
