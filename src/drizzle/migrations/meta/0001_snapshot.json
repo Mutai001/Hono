@@ -1,6 +1,6 @@
 {
-  "id": "9e1db4b1-0bae-4a4a-be39-db374648f1b4",
-  "prevId": "02fdfbc1-2383-45cf-8ae8-f555fcd2a000",
+  "id": "38ac7851-606f-4954-b909-d507e622666c",
+  "prevId": "36d03e43-2d02-4268-ab80-b18c187af7f0",
   "version": "7",
   "dialect": "postgresql",
   "tables": {
@@ -14,9 +14,9 @@
           "primaryKey": true,
           "notNull": true
         },
-        "user_id": {
-          "name": "user_id",
-          "type": "integer",
+        "email": {
+          "name": "email",
+          "type": "varchar(100)",
           "primaryKey": false,
           "notNull": true
         },
@@ -24,13 +24,13 @@
           "name": "password",
           "type": "varchar(100)",
           "primaryKey": false,
-          "notNull": false
+          "notNull": true
         },
-        "username": {
-          "name": "username",
-          "type": "varchar(100)",
+        "user_id": {
+          "name": "user_id",
+          "type": "integer",
           "primaryKey": false,
-          "notNull": false
+          "notNull": true
         },
         "role": {
           "name": "role",
@@ -429,12 +429,6 @@
           "type": "timestamp",
           "primaryKey": false,
           "notNull": true
-        },
-        "category": {
-          "name": "category",
-          "type": "varchar(20)",
-          "primaryKey": false,
-          "notNull": false
         }
       },
       "indexes": {},
@@ -949,8 +943,8 @@
           "primaryKey": false,
           "notNull": true
         },
-        "contact_verified": {
-          "name": "contact_verified",
+        "phone_verified": {
+          "name": "phone_verified",
           "type": "boolean",
           "primaryKey": false,
           "notNull": false
@@ -981,15 +975,15 @@
         },
         "created_at": {
           "name": "created_at",
-          "type": "timestamp",
+          "type": "date",
           "primaryKey": false,
-          "notNull": true
+          "notNull": false
         },
         "updated_at": {
           "name": "updated_at",
-          "type": "timestamp",
+          "type": "date",
           "primaryKey": false,
-          "notNull": true
+          "notNull": false
         }
       },
       "indexes": {},

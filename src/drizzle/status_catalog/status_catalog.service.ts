@@ -2,15 +2,21 @@
 
 import { eq } from "drizzle-orm"
 import db from "../db"
-import { statusCatalogselect, statusCatalogTable, statusCataloginsert } from '../schema';
+import { statusCatalogselect, statusCatalogTable, statusCataloginsert, usersRelations } from '../schema';
 
 
 export const getAllStatusCatalog = async (limit?: number): Promise<statusCatalogselect[] | null> => {
-    if (limit) {
+   
         return await db.query.statusCatalogTable.findMany({
-            limit: limit
+            limit: limit,
+            with:{
+                orderStatus:{
+                    columns:{id:true,created_at:true,},
+                }             
+
+            }
         });
-    }
+    
     return await db.query.statusCatalogTable.findMany();
 }
 

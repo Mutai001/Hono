@@ -1,14 +1,9 @@
 import db from "../drizzle/db";
-// import { UserSelect, usersTable, UserInsert, AuthOneUsersTable } from '../drizzle/schema';
 import { AuthOneUserInsert ,AuthOneUserSelect,AuthOneUsersTable} from "../drizzle/schema";
 import { eq } from "drizzle-orm";
 import { sql } from "drizzle-orm";
+import { registerUserSchema, loginUserSchema } from "../drizzle/validators";
 
-// //create user
-// export const createUserService = async (user: AuthOneUserInsert): Promise<string | null> => {
-//     await db.insert(AuthOneUsersTable).values(user)
-//     return "User created successfully";
-// }
 
 
 // register user

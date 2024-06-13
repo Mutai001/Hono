@@ -10,6 +10,13 @@ CREATE TABLE IF NOT EXISTS "address" (
 	"updated_at" timestamp NOT NULL
 );
 --> statement-breakpoint
+CREATE TABLE IF NOT EXISTS "auth_one_users" (
+	"id" serial PRIMARY KEY NOT NULL,
+	"email" varchar(100) NOT NULL,
+	"password" varchar(100) NOT NULL,
+	"user_id" integer NOT NULL
+);
+--> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "category" (
 	"id" serial PRIMARY KEY NOT NULL,
 	"name" varchar(100) NOT NULL
@@ -52,8 +59,7 @@ CREATE TABLE IF NOT EXISTS "menu_item" (
 	"price" numeric(10, 2) NOT NULL,
 	"active" boolean,
 	"created_at" timestamp NOT NULL,
-	"updated_at" timestamp NOT NULL,
-	"category" varchar(20)
+	"updated_at" timestamp NOT NULL
 );
 --> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "order_menu_item" (
@@ -121,13 +127,13 @@ CREATE TABLE IF NOT EXISTS "users" (
 	"id" serial PRIMARY KEY NOT NULL,
 	"name" varchar(100) NOT NULL,
 	"contact_phone" varchar(12) NOT NULL,
-	"contact_verified" boolean,
+	"phone_verified" boolean,
 	"email" varchar(100) NOT NULL,
 	"email_verified" boolean,
 	"confirmation_code" varchar(10),
 	"password" varchar(100) NOT NULL,
-	"created_at" timestamp NOT NULL,
-	"updated_at" timestamp NOT NULL
+	"created_at" date,
+	"updated_at" date
 );
 --> statement-breakpoint
 DO $$ BEGIN
@@ -138,6 +144,12 @@ END $$;
 --> statement-breakpoint
 DO $$ BEGIN
  ALTER TABLE "address" ADD CONSTRAINT "address_city_id_city_id_fk" FOREIGN KEY ("city_id") REFERENCES "public"."city"("id") ON DELETE cascade ON UPDATE no action;
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+--> statement-breakpoint
+DO $$ BEGIN
+ ALTER TABLE "auth_one_users" ADD CONSTRAINT "auth_one_users_user_id_users_id_fk" FOREIGN KEY ("user_id") REFERENCES "public"."users"("id") ON DELETE cascade ON UPDATE no action;
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;

@@ -5,64 +5,22 @@
     {
       "idx": 0,
       "version": "7",
-      "when": 1717670685544,
-      "tag": "0000_unique_hellcat",
+      "when": 1718273376721,
+      "tag": "0000_huge_zodiak",
       "breakpoints": true
     },
     {
       "idx": 1,
       "version": "7",
-      "when": 1718043099549,
-      "tag": "0001_oval_gorilla_man",
+      "when": 1718276545386,
+      "tag": "0001_aspiring_wolverine",
       "breakpoints": true
     },
     {
       "idx": 2,
       "version": "7",
-      "when": 1718120715730,
-      "tag": "0002_productive_rogue",
-      "breakpoints": true
-    },
-    {
-      "idx": 3,
-      "version": "7",
-      "when": 1718178551078,
-      "tag": "0003_sturdy_mikhail_rasputin",
-      "breakpoints": true
-    },
-    {
-      "idx": 4,
-      "version": "7",
-      "when": 1718188492490,
-      "tag": "0004_melted_killer_shrike",
-      "breakpoints": true
-    },
-    {
-      "idx": 5,
-      "version": "7",
-      "when": 1718262609846,
-      "tag": "0005_free_puppet_master",
-      "breakpoints": true
-    },
-    {
-      "idx": 6,
-      "version": "7",
-      "when": 1718265964281,
-      "tag": "0006_perpetual_legion",
-      "breakpoints": true
-    },
-    {
-      "idx": 7,
-      "version": "7",
-      "when": 1718267112708,
-      "tag": "0007_groovy_stick",
-      "breakpoints": true
-    },
-    {
-      "idx": 8,
-      "version": "7",
-      "when": 1718267178986,
-      "tag": "0008_low_scream",
+      "when": 1718281831619,
+      "tag": "0002_tricky_famine",
       "breakpoints": true
     }
   ]

@@ -6,11 +6,23 @@ import { cityselect, cityTable,cityinsert } from '../schema';
 
 export const getAllCity = async (limit?: number): Promise<cityinsert[] | null> => {
     // return await db.query.cityTable.findMany()
-     if (limit) {
+     
         return await db.query.cityTable.findMany({
-            limit: limit
+            limit: limit,
+            with:{
+                state:{
+                    columns:{name:true},
+                },
+               addresses:{
+                columns:{id:true,street_address_1:true,street_address_2:true},
+               },
+               restaurants:{
+                columns:{id:true,name:true,city_id:true,zip_code:true},
+               
+               }
+            }
         });
-    }
+    
     return await db.query.cityTable.findMany();
 
 }

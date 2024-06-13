@@ -11,10 +11,11 @@ GET http://localhost:8000/api/timeout
 ###
 GET http://localhost:8000/api/users
 
-
 ###
-GET http://localhost:8000/api/users/1
-
+GET http://localhost:8000/api/users
+###
+GET http://localhost:8000/api/users
+Authorization: 
 
 ###
 
@@ -23,7 +24,7 @@ Authorization:
 Content-Type: application/json
 
 {
-   
+    "id": 20,
     "name": "Moses",
     "contact_phone": "+254729023",
     "phone_verified": true,
@@ -265,7 +266,7 @@ Content-Type: application/json
 }
 
 ###
-PUT http://localhost:8000/api/comment/1
+PUT http://localhost:8000/api/comments/1
 Content-Type: application/json
 
 {
@@ -463,10 +464,11 @@ POST http://localhost:8000/api/register
 Content-Type: application/json
 
 {
-    "userId": 20,    
-    "username": "Ian",
-    "password": "Pass122",
-    "role": "admin"
+    "email":"johnleo@gmail.com",
+    "password": "johnleo2002",
+    "userId": 1,    
+    "role": "admin",
+    "username": "Johnie"
 }
 
 ### 
@@ -481,8 +483,7 @@ Content-Type: application/json
 
 
 ###
-GET http://localhost:8000/api/users
-Authorization: $2b$10$xf0qYQqIt0ar1Xtn/kxyYuICDwByne2V77drzZvRs.jM9pAxUE3X
+GET http://localhost:8000/api/users/3
 
 
 

@@ -4,10 +4,23 @@ import { eq } from "drizzle-orm"
 import db from "../db"
 import {  stateTable, stateinsert, stateselect } from '../schema';
 
-export const getAllStates = async (): Promise<stateselect[] | null> => {
-    return await db.query.stateTable.findMany()
+// export const getAllStates = async (): Promise<stateselect[] | null> => {
+//     return await db.query.stateTable.findMany()
 
+// }
+export const getAllStates = async (limit?: number): Promise<stateselect[] | null> => {
+    return await db.query.stateTable.findMany({
+        limit: limit,
+        with:{
+            cities:{
+                columns:{name:true,state_id:true},
+            },
+            
+        }
+    
+    });
 }
+
 
 // fetch one states
 export const fetchOneState = async (id: number): Promise<stateselect | undefined> => {
