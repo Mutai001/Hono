@@ -16,6 +16,21 @@ UserRouter.put("/users/:id", updateUsersData);
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // export const UserRouter = new Hono();
 // UserRouter.get("/users",adminRoleAuth, getAllUsersData);
 // UserRouter.get("/users/:id", userRoleAuth, getOneUsersData);

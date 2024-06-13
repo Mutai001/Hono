@@ -9,7 +9,11 @@ import { registerUserSchema, loginUserSchema } from '../drizzle/validators'
 export const authRouter = new Hono();
 
 
-authRouter.post('/register', registerUser)
+authRouter.post('/register', zValidator('json', registerUserSchema, (result, c) => {
+    if (!result.success) {
+        return c.json(result.error, 400)
+    }
+}),registerUser)
 
 
 authRouter.post('/login', zValidator('json', loginUserSchema, (result, c) => {
@@ -17,6 +21,9 @@ authRouter.post('/login', zValidator('json', loginUserSchema, (result, c) => {
         return c.json(result.error, 400)
     }
 }), loginUserData)
+
+
+
 
 
 

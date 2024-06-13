@@ -5,14 +5,20 @@ import db from "../db"
 import { commentsselect, commentsinsert, commentsTable } from '../schema';
 
   export const getAllComments = async (limit?: number): Promise<commentsselect[] | null> => {
-  
-    // return await db.query.commentsTable.findMany()
-     if (limit) {
-        return await db.query.commentsTable.findMany({
-            limit: limit
-        });
-    }
-    return await db.query.commentsTable.findMany();
+  try {
+      // return await db.query.commentsTable.findMany()
+       if (limit) {
+          return await db.query.commentsTable.findMany({
+              limit: limit
+          });
+      }
+      return await db.query.commentsTable.findMany();
+    
+  } catch (error: any) {
+      return error?.message
+    //   throw new Error(error/)
+
+  }
 
 }
 

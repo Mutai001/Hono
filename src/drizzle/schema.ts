@@ -291,21 +291,40 @@ export const orderMenuItemRelations = relations(orderMenuItemTable, ({ one }) =>
 
 export const  roleEnum = pgEnum("role", ["admin","user"])
  
+// export const AuthOneUsersTable = pgTable("auth_one_users", {
+//  id: serial("id").primaryKey(),
+//     userId: integer("user_id").notNull().references(() => usersTable.id, { onDelete: "cascade" }),
+//     password: varchar("password", { length: 100 }),
+//     username: varchar("username", { length: 100 }),
+//     role: roleEnum("role").default("user")
+// });
+
+
+// const AuthOneUserRelations = relations (AuthOneUsersTable, ({one}) => ({
+//   user: one(usersTable, {
+//     fields: [AuthOneUsersTable.userId],
+//     references: [usersTable.id],
+//   }),
+//   }));
+
+// AuthOneUsers table
 export const AuthOneUsersTable = pgTable("auth_one_users", {
- id: serial("id").primaryKey(),
-    userId: integer("user_id").notNull().references(() => usersTable.id, { onDelete: "cascade" }),
-    password: varchar("password", { length: 100 }),
-    username: varchar("username", { length: 100 }),
-    role: roleEnum("role").default("user")
+  id: serial("id").primaryKey(),
+  userId: integer("user_id").notNull().references(() => usersTable.id, { onDelete: "cascade" }),
+  password: varchar("password", { length: 100 }),
+  username: varchar("username", { length: 100 }),
+  role: roleEnum("role").default("user"),
 });
 
-
-const AuthOneUserRelations = relations (AuthOneUsersTable, ({one}) => ({
+export const AuthOneUserRelations = relations(AuthOneUsersTable, ({ one }) => ({
   user: one(usersTable, {
     fields: [AuthOneUsersTable.userId],
     references: [usersTable.id],
   }),
-  }));
+}));
+
+
+
 
 
 

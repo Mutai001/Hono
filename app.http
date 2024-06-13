@@ -11,10 +11,6 @@ GET http://localhost:8000/api/timeout
 ###
 GET http://localhost:8000/api/users
 
-###
-
-GET http://localhost:8000/api/users
-
 
 ###
 GET http://localhost:8000/api/users/1
@@ -86,7 +82,7 @@ GET http://localhost:8000/api/city
 
 ###
 
-GET http://localhost:8000/api/city/2
+GET http://localhost:8000/api/city/3
 
 ###
 POST http://localhost:8000/api/city
@@ -107,7 +103,7 @@ PUT http://localhost:8000/api/city/2
 Content-Type: application/json
 
 {
-    "name": "Niger"
+    "name": "Kenya"
 }
 ###
 DELETE http://localhost:8000/api/city/2
@@ -238,9 +234,8 @@ Content-Type: application/json
     "street_address_2": "199300",
     "zip_code": "22030k",
     "delivery_instructions": "Behind citymall",
-    "user_id":1,
-    "city_id": 2
-}
+    "user_id": 2,
+    "city_id": 3}
 
 ###
 PUT http://localhost:8000/api/address/1
@@ -254,11 +249,11 @@ DELETE http://localhost:8000/api/address/2
 
 ###
 
-GET http://localhost:8000/api/comment
+GET http://localhost:8000/api/comments
 
 ###
 
-POST http://localhost:8000/api/comment
+POST http://localhost:8000/api/comments
 Content-Type: application/json
 
 {
@@ -468,9 +463,9 @@ POST http://localhost:8000/api/register
 Content-Type: application/json
 
 {
-    "user_id": 1,    
-    "name": "Cyrus",
-    "password": "Pass0001",
+    "userId": 20,    
+    "username": "Ian",
+    "password": "Pass122",
     "role": "admin"
 }
 
@@ -479,16 +474,15 @@ POST http://localhost:8000/api/login
 Content-Type: application/json
 
 {
-    "username": "Kelvin",
-    "password": "Kelvin123"
+    "username": "Cyrus Kimutai",
+    "password": "*00kimtai"
 }
 
 
 
 ###
 GET http://localhost:8000/api/users
-
-
+Authorization: $2b$10$xf0qYQqIt0ar1Xtn/kxyYuICDwByne2V77drzZvRs.jM9pAxUE3X
 
 
 
