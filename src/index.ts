@@ -12,7 +12,6 @@ import { timeout } from 'hono/timeout'
 
 
 
-
 import { UserRouter } from './drizzle/users/user.router'
 import { addressRouter } from './drizzle/address/address.router'
 import { categoryRouter } from './drizzle/category/category.router'
@@ -27,7 +26,7 @@ import { restaurantRouter } from './drizzle/restaurant/restaurant.router'
 import { RestaurantOwnerRouter } from './drizzle/restaurant_owner/restaurant_owner.router'
 import { StateRouter } from './drizzle/state/state.router'
 import { status_catalogRouter } from './drizzle/status_catalog/status_catalog.router'
-import { authRouter } from '../src/auth/auth.router'
+import { authRouter } from './auth/auth.router'
 
 
 const app = new Hono().basePath('/api')

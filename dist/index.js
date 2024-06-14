@@ -24,7 +24,7 @@ const restaurant_router_1 = require("./drizzle/restaurant/restaurant.router");
 const restaurant_owner_router_1 = require("./drizzle/restaurant_owner/restaurant_owner.router");
 const state_router_1 = require("./drizzle/state/state.router");
 const status_catalog_router_1 = require("./drizzle/status_catalog/status_catalog.router");
-const auth_router_1 = require("../src/auth/auth.router");
+const auth_router_1 = require("./auth/auth.router");
 const app = new hono_1.Hono().basePath('/api');
 const customTimeoutException = () => new http_exception_1.HTTPException(408, {
     message: `Request timeout after waiting for more than 10 seconds`,
@@ -78,5 +78,5 @@ app.get('/metrics', printMetrics);
 console.log('Registered routes: ', app.routes);
 (0, node_server_1.serve)({
     fetch: app.fetch,
-    port: Number(process.env.PORT),
+    port: 3000,
 });
