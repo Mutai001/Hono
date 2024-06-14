@@ -129,7 +129,8 @@ app.get('/', (c) => {
     <h1>Welcome to Our Restaurant API</h1>
   </header>
   <main>
-    <h1>Hello Hono!</h1>
+    <h1>Hello, ICyrus Kimutai 😊</h1>
+
     <p>Welcome to our restaurant API. Here you can find a variety of services to manage your restaurant data.</p>
   </main>
   <footer>
