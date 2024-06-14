@@ -6,7 +6,6 @@ require("dotenv/config");
 const logger_1 = require("hono/logger");
 const csrf_1 = require("hono/csrf");
 const prometheus_1 = require("@hono/prometheus");
-const html_1 = require("hono/html");
 const trailing_slash_1 = require("hono/trailing-slash");
 const http_exception_1 = require("hono/http-exception");
 const timeout_1 = require("hono/timeout");
@@ -45,9 +44,6 @@ app.get('/timeout', async (c) => {
     return c.text("data after 5 seconds", 200);
 });
 app.get('/metrics', printMetrics);
-app.get('/', (c) => {
-    return c.text('Hello Hono!');
-});
 //Routes
 app.route('/', user_router_1.UserRouter);
 app.route('/', address_router_1.addressRouter);
@@ -67,9 +63,65 @@ app.route('/', category_router_1.categoryRouter);
 app.route('/', auth_router_1.authRouter); // api/auth/register   or api/auth/login
 // default route
 app.get('/', (c) => {
-    return c.html((0, html_1.html) `
-      <h1>Welcome to Restaurant Management API!</h1>
-      <li>Feel free to querying the API</li>`);
+    const html = `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Restaurant API</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+    header {
+      background-color: #333;
+      color: white;
+      padding: 1rem 0;
+      text-align: center;
+    }
+    main {
+      padding: 2rem;
+      max-width: 800px;
+      margin: 2rem auto;
+      background-color: white;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    footer {
+      background-color: #333;
+      color: white;
+      text-align: center;
+      padding: 1rem 0;
+      position: absolute;
+      width: 100%;
+      bottom: 0;
+    }
+    h1 {
+      color: #333;
+    }
+    p {
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Welcome to Our Restaurant API</h1>
+  </header>
+  <main>
+    <h1>Hello Hono!</h1>
+    <p>Welcome to our restaurant API. Here you can find a variety of services to manage your restaurant data.</p>
+  </main>
+  <footer>
+    <p>&copy; 2024 Restaurant API. All rights reserved.</p>
+  </footer>
+</body>
+</html>
+  `;
+    return c.html(html);
 });
 // const port = 3000 
 const port = Number(process.env.PORT);
