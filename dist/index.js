@@ -49,22 +49,22 @@ app.get('/', (c) => {
     return c.text('Hello Hono!');
 });
 //Routes
-app.route('/users', user_router_1.UserRouter);
-app.route('/address', address_router_1.addressRouter);
-app.route('/category', category_router_1.categoryRouter);
-app.route('/city', city_router_1.CityRouter);
-app.route('/comments', comments_router_1.commentsRouter);
-app.route('/drivers', drivers_router_1.driverRouter);
-app.route('/menu_item', menu_item_router_1.menuItemRouter);
-app.route('/order_menu_item', order_menu_item_router_1.OrderMenuItemRouter);
-app.route('/orders', orders_router_1.ordersRouter);
-app.route('/orders_status', order_status_router_1.OrderStatusRouter);
-app.route('/restaurant', restaurant_router_1.restaurantRouter);
-app.route('/restaurant_owner', restaurant_owner_router_1.RestaurantOwnerRouter);
-app.route('/state', state_router_1.StateRouter);
-app.route('/status_catalog', status_catalog_router_1.status_catalogRouter);
-app.route('/category', category_router_1.categoryRouter);
-app.route('/auth', auth_router_1.authRouter); // api/auth/register   or api/auth/login
+app.route('/', user_router_1.UserRouter);
+app.route('/', address_router_1.addressRouter);
+app.route('/', category_router_1.categoryRouter);
+app.route('/', city_router_1.CityRouter);
+app.route('/', comments_router_1.commentsRouter);
+app.route('', drivers_router_1.driverRouter);
+app.route('/', menu_item_router_1.menuItemRouter);
+app.route('/', order_menu_item_router_1.OrderMenuItemRouter);
+app.route('/', orders_router_1.ordersRouter);
+app.route('/', order_status_router_1.OrderStatusRouter);
+app.route('/', restaurant_router_1.restaurantRouter);
+app.route('/', restaurant_owner_router_1.RestaurantOwnerRouter);
+app.route('/', state_router_1.StateRouter);
+app.route('/', status_catalog_router_1.status_catalogRouter);
+app.route('/', category_router_1.categoryRouter);
+app.route('/', auth_router_1.authRouter); // api/auth/register   or api/auth/login
 // default route
 app.get('/', (c) => {
     return c.html((0, html_1.html) `

@@ -56,10 +56,13 @@ exports.getOneUsersData = getOneUsersData;
 const createUsersData = async (c) => {
     try {
         const user = await c.req.json();
-        const password = user.password;
-        const hashedPassword = await bcrypt.hash(password, 10);
+        const pass = user.password;
+        const hashedPassword = await bcrypt.hash(pass, 10);
         user.password = hashedPassword;
         const response = await (0, user_service_1.CreateUser)(user);
+        if (!response) {
+            return c.text("User not created", 404);
+        }
         return c.json({ message: response }, 201);
     }
     catch (error) {
@@ -76,7 +79,7 @@ const updateUsersData = async (c) => {
         const city = await c.req.json();
         const City = await (0, user_service_1.UpdateUser)(id, city);
         if (!user_service_1.UpdateUser)
-            return c.text('City not updated', 400);
+            return c.text('User not updated', 400);
         return c.json({ msg: user_service_1.UpdateUser }, 200);
     }
     catch (error) {

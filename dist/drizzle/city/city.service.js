@@ -10,11 +10,20 @@ const db_1 = __importDefault(require("../db"));
 const schema_1 = require("../schema");
 const getAllCity = async (limit) => {
     // return await db.query.cityTable.findMany()
-    if (limit) {
-        return await db_1.default.query.cityTable.findMany({
-            limit: limit
-        });
-    }
+    return await db_1.default.query.cityTable.findMany({
+        limit: limit,
+        with: {
+            state: {
+                columns: { name: true },
+            },
+            addresses: {
+                columns: { id: true, street_address_1: true, street_address_2: true },
+            },
+            restaurants: {
+                columns: { id: true, name: true, city_id: true, zip_code: true },
+            }
+        }
+    });
     return await db_1.default.query.cityTable.findMany();
 };
 exports.getAllCity = getAllCity;

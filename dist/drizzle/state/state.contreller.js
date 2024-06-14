@@ -4,21 +4,14 @@ exports.deleteStatesData = exports.updateStatesData = exports.createStateData = 
 const state_service_1 = require("./state.service");
 //fetch all states
 const getAllStatesData = async (c) => {
-    const id = parseInt(c.req.param("id"));
-    if (isNaN(id))
-        return c.text("Invalid ID", 400);
-    const State = await c.req.json();
     try {
-        // search for the State
-        const searchedState = await (0, state_service_1.getAllStates)();
-        if (searchedState == undefined)
-            return c.text("State not found", 404);
-        // get the data and update it
-        const res = await (0, state_service_1.UpdateState)(id, State);
-        // return a success message
-        if (!res)
-            return c.text("State not updated", 404);
-        return c.json({ msg: res }, 201);
+        const data = await (0, state_service_1.getAllStates)();
+        if (data == null || data.length == 0) {
+            return c.json({ massage: "States not found" }, 404);
+        }
+        else {
+            return c.json(data, 200);
+        }
     }
     catch (error) {
         return c.json({ error: error?.message }, 400);

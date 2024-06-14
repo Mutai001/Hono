@@ -9,20 +9,29 @@ const schema_1 = require("../drizzle/schema");
 const drizzle_orm_1 = require("drizzle-orm");
 // register user
 const createAuthUserService = async (user) => {
-    await db_1.default.insert(schema_1.usersTable).values(user);
+    await db_1.default.insert(schema_1.AuthOneUsersTable).values(user);
     return "User created successfully";
 };
 exports.createAuthUserService = createAuthUserService;
 // log in user
 const loginUserService = async (user) => {
-    console.log(user);
-    return await db_1.default.query.usersTable.findFirst({
+    const { username, password } = user;
+    return await db_1.default.query.AuthOneUsersTable.findFirst({
         columns: {
-            name: true,
-            contact_phone: true,
-            email: true,
+            username: true,
+            role: true,
             password: true
-        }, where: (0, drizzle_orm_1.eq)(schema_1.usersTable.email, user.email)
+        }, where: (0, drizzle_orm_1.sql) `${schema_1.AuthOneUsersTable.username} = ${username}`,
+        with: {
+            user: {
+                columns: {
+                    id: true,
+                    name: true,
+                    contact_phone: true,
+                    email: true,
+                }
+            }
+        }
     });
 };
 exports.loginUserService = loginUserService;

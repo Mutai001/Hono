@@ -26,8 +26,13 @@ const fetchOneMenuItem = async (id) => {
 exports.fetchOneMenuItem = fetchOneMenuItem;
 // create menuItem
 const CreateMenuItem = async (menuItem) => {
-    await db_1.default.insert(schema_1.menuItemsTable).values(menuItem);
-    return "menuItem created successfully";
+    try {
+        await db_1.default.insert(schema_1.menuItemsTable).values(menuItem);
+        return "menuItem created successfully";
+    }
+    catch (err) {
+        return err?.message;
+    }
 };
 exports.CreateMenuItem = CreateMenuItem;
 // update menuItem

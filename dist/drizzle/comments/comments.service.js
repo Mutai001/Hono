@@ -9,13 +9,19 @@ const drizzle_orm_1 = require("drizzle-orm");
 const db_1 = __importDefault(require("../db"));
 const schema_1 = require("../schema");
 const getAllComments = async (limit) => {
-    // return await db.query.commentsTable.findMany()
-    if (limit) {
-        return await db_1.default.query.commentsTable.findMany({
-            limit: limit
-        });
+    try {
+        // return await db.query.commentsTable.findMany()
+        if (limit) {
+            return await db_1.default.query.commentsTable.findMany({
+                limit: limit
+            });
+        }
+        return await db_1.default.query.commentsTable.findMany();
     }
-    return await db_1.default.query.commentsTable.findMany();
+    catch (error) {
+        return error?.message;
+        //   throw new Error(error/)
+    }
 };
 exports.getAllComments = getAllComments;
 // fetch one comments

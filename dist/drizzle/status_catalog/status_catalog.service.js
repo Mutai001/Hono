@@ -9,11 +9,14 @@ const drizzle_orm_1 = require("drizzle-orm");
 const db_1 = __importDefault(require("../db"));
 const schema_1 = require("../schema");
 const getAllStatusCatalog = async (limit) => {
-    if (limit) {
-        return await db_1.default.query.statusCatalogTable.findMany({
-            limit: limit
-        });
-    }
+    return await db_1.default.query.statusCatalogTable.findMany({
+        limit: limit,
+        with: {
+            orderStatus: {
+                columns: { id: true, created_at: true, },
+            }
+        }
+    });
     return await db_1.default.query.statusCatalogTable.findMany();
 };
 exports.getAllStatusCatalog = getAllStatusCatalog;

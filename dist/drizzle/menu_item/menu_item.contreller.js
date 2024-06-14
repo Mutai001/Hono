@@ -36,7 +36,7 @@ const createMenuItemData = async (c, next) => {
         return c.json({ message: response }, 201);
     }
     catch (err) {
-        return c.json({ message: err }, 500);
+        return c.json({ message: err?.message }, 500);
     }
 };
 exports.createMenuItemData = createMenuItemData;

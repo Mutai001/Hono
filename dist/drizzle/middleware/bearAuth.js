@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.userRoleAuth = exports.adminRoleAuth = exports.authMiddleware = exports.verifyToken = void 0;
+exports.userOrAdminRoleAuth = exports.userRoleAuth = exports.adminRoleAuth = exports.authMiddleware = exports.verifyToken = void 0;
 require("dotenv/config");
 const jwt_1 = require("hono/jwt");
 //Authentication middleware
@@ -31,3 +31,5 @@ const adminRoleAuth = async (c, next) => await (0, exports.authMiddleware)(c, ne
 exports.adminRoleAuth = adminRoleAuth;
 const userRoleAuth = async (c, next) => await (0, exports.authMiddleware)(c, next, "user");
 exports.userRoleAuth = userRoleAuth;
+const userOrAdminRoleAuth = async (c, next) => await (0, exports.authMiddleware)(c, next, "both");
+exports.userOrAdminRoleAuth = userOrAdminRoleAuth;

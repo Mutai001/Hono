@@ -8,8 +8,18 @@ exports.DeleteState = exports.UpdateState = exports.CreateState = exports.fetchO
 const drizzle_orm_1 = require("drizzle-orm");
 const db_1 = __importDefault(require("../db"));
 const schema_1 = require("../schema");
-const getAllStates = async () => {
-    return await db_1.default.query.stateTable.findMany();
+// export const getAllStates = async (): Promise<stateselect[] | null> => {
+//     return await db.query.stateTable.findMany()
+// }
+const getAllStates = async (limit) => {
+    return await db_1.default.query.stateTable.findMany({
+        limit: limit,
+        with: {
+            cities: {
+                columns: { name: true, state_id: true },
+            },
+        }
+    });
 };
 exports.getAllStates = getAllStates;
 // fetch one states
